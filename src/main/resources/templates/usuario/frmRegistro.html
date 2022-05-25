@@ -1,10 +1,51 @@
 <!DOCTYPE html>
-<html>
-<head>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="master/master  ::  head"></head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
 </head>
 <body>
+	<header th:replace="master/master :: header"></header>
+	<div class="container">
+		<br />
+		<div>Registro Usuario</div>
+		<br />
+		<form th:action="@{/usuarios/save}" th:object="${u}" method="post">
 
+			<div class="col-sm-12">
+				<label class="form-label" for="idUsuario">Id: </label> <input
+					class="form-control" type="text" th:field="*{idUsuario}"></input>
+			</div>
+			<br />
+			<div class="col-sm-12">
+				<label class="form-label" for="fullName">Nombres: </label> <input
+					class="form-control" type="text" th:field="*{fullName}"></input>
+			</div>
+
+			<br />
+			<div class="col-sm-12">
+				<label class="form-label" for="email">Email: </label> <input
+					class="form-control" type="text" th:field="*{email}"></input>
+			</div>
+			<br />
+			<div class="col-sm-12">
+				<label class="form-label" for="displayName">Display Name: </label> <input
+					class="form-control" type="text" th:field="*{displayName}"></input>
+			</div>
+			<br />
+			<div class="col-sm-12">
+				<label class="form-label" for="numPhone">Numero Telefono: </label> <input
+					class="form-control" type="text" th:field="*{numPhone}"></input>
+			</div>
+			<br />
+			<div class="col-sm-12">
+				<label class="form-label" for="nationality">Nacionalidad: </label> <input
+					class="form-control" type="text" th:field="*{nationality}"></input>
+			</div>
+			<br />
+			<div class="col-sm-12">
+				<input class="btn btn-dark" type="submit"></input>
+			</div>
+		</form>
+	</div>
 </body>
 </html>

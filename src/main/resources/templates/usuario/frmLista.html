@@ -1,10 +1,39 @@
 <!DOCTYPE html>
-<html>
-<head>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="master/master  ::  head"></head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
 </head>
 <body>
+	<header th:replace="master/master :: header"></header>
 
+	<div class="container">
+		<br />
+		<div>Lista de Usuarios</div>
+		<div class="table-responsive">
+			<table class="table table-white">
+				<thead>
+					<tr>
+						<th>Id</th>
+						<th>Nombre</th>
+						<th>Email</th>
+						<th>Display Name</th>
+						<th>Telefono</th>
+						<th>Nacionalidad</th>
+					</tr>
+				</thead>
+				<tbody id="usuario-list">
+					<tr th:each="usuario:${listaUsers}">
+						<td th:text="${usuario.idUsuario}"></td>
+						<td th:text="${usuario.fullName}"></td>
+						<td th:text="${usuario.email}"></td>
+						<td th:text="${usuario.displayName}"></td>
+						<td th:text="${usuario.numPhone}"></td>
+						<td th:text="${usuario.nationality}"></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+	</div>
 </body>
 </html>
