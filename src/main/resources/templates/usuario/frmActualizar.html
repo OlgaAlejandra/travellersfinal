@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="master/master  ::  head"></head>
+<meta charset="ISO-8859-1">
+</head>
+<body>
+	<header th:replace="master/master :: header"></header>
+	<div class="container">
+		<br />
+		<div
+			style="font-family: 'Roboto Condensed', sans-serif; font-size: 150%">Actualizar
+			Usuario</div>
+		<hr style="background-color: #FA251B"></hr>
+		<form th:action="@{/usuarios/update}" th:object="${usu}" method="post">
+
+			<div class="col-sm-12">
+				<label class="form-label" for="idUsuario">Id: </label> <input
+					class="form-control" type="text" th:field="*{idUsuario}"></input>
+			</div>
+			<br />
+			<div class="col-sm-12">
+				<label class="form-label" for="fullName">Nombres: </label> <input
+					class="form-control" type="text" th:field="*{fullName}"></input>
+			</div>
+
+			<br />
+			<div class="col-sm-12">
+				<label class="form-label" for="email">Email: </label> <input
+					class="form-control" type="text" th:field="*{email}"></input>
+			</div>
+			<br />
+			<div class="col-sm-12">
+				<label class="form-label" for="displayName">Display Name: </label> <input
+					class="form-control" type="text" th:field="*{displayName}"></input>
+			</div>
+			<br />
+			<div class="col-sm-12">
+				<label class="form-label" for="numPhone">Numero Telefono: </label> <input
+					class="form-control" type="text" th:field="*{numPhone}"></input>
+			</div>
+			<br />
+			<div class="col-sm-12">
+				<label class="form-label" for="nationality">Nacionalidad: </label> <input
+					class="form-control" type="text" th:field="*{nationality}"></input>
+			</div>
+			<hr style="color: #fdfdfd"></hr>
+			<div class="col-sm-12">
+				<input class="btn btn-dark" type="submit" value="Actualizar"></input>
+			</div>
+		</form>
+	</div>
+	<div align="right">
+		<footer th:replace="master/master :: footer"></footer>
+
+	</div>
+</body>
+</html>

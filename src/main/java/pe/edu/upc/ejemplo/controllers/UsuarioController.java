@@ -1,5 +1,8 @@
 package pe.edu.upc.ejemplo.controllers;
 
+import java.util.Map;
+import java.util.Optional;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,8 +10,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import pe.edu.upc.ejemplo.entities.Usuario;
 import pe.edu.upc.ejemplo.serviceinterface.IUsuarioService;
@@ -45,4 +50,31 @@ public class UsuarioController {
 		}
 		return"/usuario/frmLista";
 	}
+	
+	@RequestMapping("/delete")
+	public String deleteUsuario(Map<String, Object> model, @RequestParam(value = "id") Integer id) {
+		try {
+			if(id!=null && id>0) {
+				uService.delete(id);
+				model.put("listaUsers", uService.list());
+			}
+		} catch (Exception e) {
+			model.put("error", e.getMessage());
+		}
+		return"/usuario/frmLista";
+	}
+	
+	@RequestMapping("/goupdate/{id}")
+	public String goUpdateUsuario(@PathVariable int id, Model model) {
+		Optional<Usuario> objUsu = uService.listId(id);
+		model.addAttribute("usu", objUsu.get());
+		return "usuario/frmActualizar";
+	}
+	
+	@PostMapping("/update")
+	public String updateUsuario(Usuario usuario) {
+		uService.update(usuario);
+		return "redirect:/usuarios/list";
+	}
+	
 }
