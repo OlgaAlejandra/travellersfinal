@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="master/master  ::  head"></head>
+<meta charset="UTF-8">
+</head>
+<body>
+	<header th:replace="master/master :: header"></header>
+	<div class="container">
+		<br />
+		<div>Registro Type Trip</div>
+		<br />
+		<form th:action="@{/typetrips/update}" th:object="${type}" method="post">
+
+			<div class="col-sm-12">
+				<label class="form-label" for="idTypeTrip">Id: </label> <input
+					class="form-control" type="text" th:field="*{idTypeTrip}"></input>
+			</div>
+			<br />
+			<div class="col-sm-12">
+				<label class="form-label" for="name">Nombre: </label> <input
+					class="form-control" type="text" th:field="*{name}"></input>
+			</div>
+	
+			<br />
+			<div class="col-sm-12">
+				<input class="btn btn-dark" type="submit" value="Actualizar"></input>
+			</div>
+		</form>
+	</div>
+	<div align="right">
+		<footer th:replace="master/master :: footer"></footer>
+
+	</div>
+</body>
+</html>
