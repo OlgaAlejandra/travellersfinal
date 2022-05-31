@@ -14,16 +14,19 @@ import pe.edu.upc.ejemplo.serviceinterface.IAccommodationTypeService;
 public class AccommodationTypeServiceImpl implements IAccommodationTypeService {
 
 	@Autowired
+	
 	private IAccommodationTypeRepository accommodationTypeRepository;
 	
 	@Override
 	public void insert(AccommodationType accommodationType) {
 		accommodationTypeRepository.save(accommodationType);
+		
 	}
 
 	@Override
 	public List<AccommodationType> list() {
 		return accommodationTypeRepository.findAll();
+		
 	}
 
 	@Override

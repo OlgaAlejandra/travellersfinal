@@ -61,19 +61,23 @@ public class AccommodationTypeController {
 		} catch (Exception e) {
 			model.put("error", e.getMessage());
 		}
+		
 		return "/accommodationtype/frmLista";
 	}
 
 	@RequestMapping("/goupdate/{id}")
 	public String goUpdateAccommodationType(@PathVariable int id, Model model) {
 		Optional<AccommodationType> objAcc = atService.listId(id);
+		
 		model.addAttribute("atype",objAcc.get());
+		
 		return "accommodationtype/frmActualizar";
 	}
 	
 	@PostMapping("/update")
 	public String updateAccommodationType(AccommodationType accommodationType) {
 		atService.update(accommodationType);
+		
 		return "redirect:/accommodationtypes/list";
 	}
 }

@@ -8,4 +8,5 @@ import pe.edu.upc.ejemplo.entities.AccommodationType;
 @Repository
 public interface IAccommodationTypeRepository extends JpaRepository<AccommodationType, Integer>{
 
+	
 }
