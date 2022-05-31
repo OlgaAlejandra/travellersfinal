@@ -38,8 +38,28 @@
 			</div>
 			<br />
 			<div class="col-sm-12">
-				<label class="form-label" for="nationality">Nacionalidad: </label> <input
-					class="form-control" type="text" th:field="*{nationality}"></input>
+				<label class="form-label" for="nationality">Nacionalidad: </label> <select
+					name="select" class="form-control" th:field="*{nationality}">
+					<option value="Peruano" selected="selected">Peruano</option>
+					<option value="Mexicano">Mexicano</option>
+					<option value="Francés">Francés</option>
+					<option value="Estadounidense">Estadounidense</option>
+					<option value="Italiano">Italiano</option>
+					<option value="Colombiano">Colombiano</option>
+					<option value="Chileno">Chileno</option>
+					<option value="Argentino">Argentino</option>
+					<option value="Boliviano">Boliviano</option>
+					<option value="Venezolano">Coreano</option>
+					<option value="Ecuatoriano">Ecuatoriano</option>
+					<option value="Japonés">Japonés</option>
+					<option value="Chino">Chino</option>
+					<option value="Australiano">Australiano</option>
+					<option value="Ruso">Ruso</option>
+					<option value="Español">Español</option>
+					<option value="Salvadoreño">Salvadoreño</option>
+					<option value="Noruego">Noruego</option>
+
+				</select>
 			</div>
 			<br />
 			<div class="col-sm-12">
