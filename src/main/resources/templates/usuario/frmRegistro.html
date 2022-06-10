@@ -19,22 +19,33 @@
 			<div class="col-sm-12">
 				<label class="form-label" for="fullName">Nombres: </label> <input
 					class="form-control" type="text" th:field="*{fullName}"></input>
+				 <small
+							class="form-text text-danger"
+							th:if="${#fields.hasErrors('fullName')}"
+							th:errors="*{fullName}"></small>
 			</div>
 
 			<br />
 			<div class="col-sm-12">
 				<label class="form-label" for="email">Email: </label> <input
 					class="form-control" type="text" th:field="*{email}"></input>
+				<p th:if="${#fields.hasErrors('email')}"
+					th:class="${#fields.hasErrors('email')}? error">Invalid Age</p>
 			</div>
 			<br />
 			<div class="col-sm-12">
 				<label class="form-label" for="displayName">Display Name: </label> <input
 					class="form-control" type="text" th:field="*{displayName}"></input>
+				<p th:if="${#fields.hasErrors('displayName')}"
+					th:class="${#fields.hasErrors('displayName')}? error">Invalid
+					Age</p>
 			</div>
 			<br />
 			<div class="col-sm-12">
 				<label class="form-label" for="numPhone">Numero Telefono: </label> <input
 					class="form-control" type="text" th:field="*{numPhone}"></input>
+				<p th:if="${#fields.hasErrors('numPhone')}"
+					th:class="${#fields.hasErrors('numPhone')}? error">Invalid Age</p>
 			</div>
 			<br />
 			<div class="col-sm-12">

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="master/master  ::  head"></head>
+<meta charset="UTF-8">
+<header th:replace="master/master :: header"></header>
+<div class="container">
+	<br />
+	<div>Registro de Destinos</div>
+	<br />
+	<form th:action="@{/destinations/save}" th:object="${d}" method="post">
+
+		<div class="col-sm-12">
+			<label class="form-label" for="idDestination">Id: </label> <input
+				class="form-control" type="text" th:field="*{idDestination}"></input>
+		</div>
+		<br />
+		<div class="col-sm-12">
+			<label class="form-label" for="name">Nombre: </label> <input
+				class="form-control" type="text" th:field="*{name}"></input>
+		</div>
+
+		<br />
+		<div class="col-sm-12">
+			<label class="form-label" for="country">País: </label> <select
+				name="select" class="form-control" th:field="*{country}">
+				<option value="Perú" selected="selected">Perú</option>
+				<option value="Ecuador">Ecuador</option>
+				<option value="Brasil">Brasil</option>
+				<option value="Colombia">Colombia</option>
+				<option value="EE.UU.">EE.UU.</option>
+				<option value="Mexico">Mexico</option>
+				<option value="Chile">Chile</option>
+				<option value="España">España</option>
+				<option value="Francia">Francia</option>
+				<option value="Portugal">Portugal</option>
+				<option value="Argentina">Argentina</option>
+				<option value="Bolivia">Bolivia</option>
+				<option value="Italia">Italia</option>
+				<option value="Reino Unido">Reino Unido</option>
+				<option value="Corea del Sur">Corea del Sur</option>
+				<option value="Turquía">Turquía</option>
+				<option value="Nueva Zelanda">Nueva Zelanda</option>
+				<option value="Alemania">Alemania</option>
+				<option value="Bélgica">Bélgica</option>
+				<option value="Australia">Australia</option>
+				<option value="Rusia">Rusia</option>
+				<option value="Canadá">Canadá</option>
+			</select>
+		</div>
+		<br />
+		<div class="col-sm-12">
+			<label class="form-label" for="description">Descripción: </label> <input
+				class="form-control" type="text" th:field="*{description}"></input>
+
+		</div>
+		<br />
+		<div class="col-sm-12">
+			<label class="form-label" for="typeTrip">Type Trip: </label> <select
+				name="selectPerson" class="form-control"
+				th:field="*{typeTrip.idTypeTrip}">
+				<option th:each="de:${listaTypeTrips}" th:value="${de.idTypeTrip}"
+					th:text="${de.name}"
+					th:selected="(${de.idTypeTrip}==*{typeTrip.idTypeTrip})"></option>
+			</select>
+		</div>
+		<br />
+		<div class="col-sm-12">
+			<input class="btn btn-dark" type="submit"></input>
+		</div>
+	</form>
+</div>
+<div align="right">
+	<footer th:replace="master/master :: footer"></footer>
+
+</div>
+</head>
+<body>
+
+</body>
+</html>
