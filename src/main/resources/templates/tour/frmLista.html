@@ -9,27 +9,28 @@
 		<br />
 		<div
 			style="font-family: 'Roboto', sans-serif; font-size: 150%; font-weight: bold;">Lista
-			de Accommodations</div>
+			de Tours</div>
 		<br />
 		<div class="table-responsive"
 			style="display: grid; grid-template-columns: repeat(4, 1fr); grid-gap: 5px; border-width: 150px;">
 
 			<div class="card border-dark mb-3"
 				style="width: 19rem; margin-right: 15px;"
-				th:each="accommodation:${listaAlojamientos}">
+				th:each="tour:${listaTours}">
 				<div class="card-header"
 					style="font-size: 20px; font-family: 'Kdam Thmor Pro', sans-serif;"
-					th:text="${accommodation.name}"></div>
+					th:text="${tour.name}"></div>
 				<img class="card-img-top" style="width: 302px; height: 200px"
-					th:if="${#strings.length(accommodation.image)> 0}"
-					th:src="@{'/accommodations/uploads/' + ${accommodation.image}}"></img>
+					th:if="${#strings.length(tour.image)> 0}"
+					th:src="@{'/tours/uploads/' + ${tour.image}}"></img>
 				<div class="card-body">
-					<p class="card-text" th:text="${accommodation.description}"></p>
-					<p class="card-text" th:text="${accommodation.location}"></p>
-					<p class="card-text" th:text="${accommodation.destination.name}"></p>
+					<p class="card-text" th:text="${tour.description}"></p>
+					<p class="card-text" th:text="${tour.location}"></p>
+					<p class="card-text" th:text="${tour.price}"></p>
+					<p class="card-text" th:text="${tour.destination.name}"></p>
 
 					<a
-						th:href="@{/accommodations/delete?id=}+${accommodation.idAccommodation}"><button
+						th:href="@{/tours/delete?id=}+${tour.idTour}"><button
 							type="button" class="btn btn-outline-danger">
 							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
 								fill="currentColor" class="bi bi-trash3-fill"
@@ -39,7 +40,7 @@
 </svg>
 							Eliminar
 						</button> </a> <a
-						th:href="@{'/accommodations/goupdate/'+${accommodation.idAccommodation}}"><button
+						th:href="@{'/tours/goupdate/'+${tour.idTour}}"><button
 							type="button" class="btn btn-outline-success">
 							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
 								fill="currentColor" class="bi bi-arrow-clockwise"

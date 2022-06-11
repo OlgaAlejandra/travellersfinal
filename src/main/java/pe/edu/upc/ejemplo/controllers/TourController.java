@@ -22,20 +22,17 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import pe.edu.upc.ejemplo.entities.Accommodation;
-import pe.edu.upc.ejemplo.serviceinterface.IAccommodationService;
-import pe.edu.upc.ejemplo.serviceinterface.IAccommodationTypeService;
+import pe.edu.upc.ejemplo.entities.Tour;
 import pe.edu.upc.ejemplo.serviceinterface.IDestinationService;
+import pe.edu.upc.ejemplo.serviceinterface.ITourService;
 import pe.edu.upc.ejemplo.serviceinterface.IUploadFileService;
 
 @Controller
-@RequestMapping("/accommodations")
-public class AccommodationController {
+@RequestMapping("/tours")
+public class TourController {
 
 	@Autowired
-	private IAccommodationService aService;
-	@Autowired
-	private IAccommodationTypeService atService;
+	private ITourService tService;
 	@Autowired
 	private IDestinationService dService;
 	@Autowired
@@ -56,22 +53,21 @@ public class AccommodationController {
 	}
 
 	@GetMapping("/new")
-	public String newAccommodation(Model model) {
-		model.addAttribute("a", new Accommodation());
-		model.addAttribute("listaAccommodationTypes", atService.list());
+	public String newTour(Model model) {
+		model.addAttribute("t", new Tour());
 		model.addAttribute("listaDestinations", dService.list());
-		return "accommodation/frmRegistro";
+		return "tour/frmRegistro";
 	}
 
 	@PostMapping("/save")
-	public String saveAccommodation(@Valid Accommodation acm, BindingResult binRes, Model model,
+	public String saveTour(@Valid Tour to, BindingResult binRes, Model model,
 			@RequestParam("file") MultipartFile foto, RedirectAttributes flash, SessionStatus status) throws Exception {
-		if (binRes.hasErrors()) {
-			return "accommodation/frmRegistro";
-		} else {
-			if (!foto.isEmpty()) {
-				if (acm.getIdAccommodation() > 0 && acm.getImage() != null && acm.getImage().length() > 0) {
-					uploadFileService.delete(acm.getImage());
+		if(binRes.hasErrors()) {
+			return "tour/frmRegistro";
+		}else {
+			if(!foto.isEmpty()) {
+				if(to.getIdTour()>0 && to.getImage() !=null && to.getImage().length()>0) {
+					uploadFileService.delete(to.getImage());
 				}
 				String uniqueFilename = null;
 				try {
@@ -80,56 +76,54 @@ public class AccommodationController {
 					e.printStackTrace();
 				}
 				flash.addFlashAttribute("info", "Has subido correctamente '" + uniqueFilename + "'");
-				acm.setImage(uniqueFilename);
+				to.setImage(uniqueFilename);
 			}
-			aService.insert(acm);
+			tService.insert(to);
 		}
-
-		return "redirect:/accommodations/list";
+		return "redirect:/tours/list";
 	}
 	
 	@GetMapping("/list")
-	public String listAccommodation(Model model) {
+	public String listTour(Model model) {
 		try {
-			model.addAttribute("listaAlojamientos", aService.list());
+			model.addAttribute("listaTours", tService.list());
 		} catch (Exception e) {
 			model.addAttribute("error", e.getMessage());
 		}
-		return "accommodation/frmLista";
+		return "tour/frmLista";
 	}
 	
 	@RequestMapping("/delete")
-	public String deleteAccommodation(Map<String, Object> model, @RequestParam(value = "id") Integer id) {
+	public String deleteTour(Map<String, Object> model,@RequestParam(value = "id") Integer id) {
 		try {
 			if(id!= null && id>0) {
-				aService.delete(id);
-				model.put("listaAlojamientos", aService.list());
+				tService.delete(id);
+				model.put("listaTours", tService.list());
 			}
 		} catch (Exception e) {
-			model.put("error",e.getMessage());
+			model.put("error", e.getMessage());
 		}
-		return "accommodation/frmLista";
+		return "tour/frmLista";
 	}
 	
 	@RequestMapping("/goupdate/{id}")
-	public String goUpdateAccommodation(@PathVariable int id, Model model) {
-		Optional<Accommodation> objAcm = aService.listId(id);
+	public String goUpdateTour(@PathVariable int id, Model model) {
+		Optional<Tour> objTo = tService.listId(id);
 		
-		model.addAttribute("listaAccommodationTypes",atService.list());
 		model.addAttribute("listaDestinations",dService.list());
-		model.addAttribute("acm", objAcm.get());
-		return "accommodation/frmActualizar";
+		model.addAttribute("to", objTo.get());
+		return "tour/frmActualizar";
 	}
-
+	
 	@PostMapping("/update")
-	public String updateAccommodation(@Valid Accommodation acm, BindingResult binRes, Model model,
+	public String updateTour(@Valid Tour to, BindingResult binRes, Model model,
 			@RequestParam("file") MultipartFile foto, RedirectAttributes flash, SessionStatus status) throws Exception {
-		if (binRes.hasErrors()) {
-			return "accommodation/frmRegistro";
-		} else {
-			if (!foto.isEmpty()) {
-				if (acm.getIdAccommodation() > 0 && acm.getImage() != null && acm.getImage().length() > 0) {
-					uploadFileService.delete(acm.getImage());
+		if(binRes.hasErrors()) {
+			return "tour/frmRegistro";
+		}else {
+			if(!foto.isEmpty()) {
+				if(to.getIdTour()>0 && to.getImage() !=null && to.getImage().length()>0) {
+					uploadFileService.delete(to.getImage());
 				}
 				String uniqueFilename = null;
 				try {
@@ -138,11 +132,10 @@ public class AccommodationController {
 					e.printStackTrace();
 				}
 				flash.addFlashAttribute("info", "Has subido correctamente '" + uniqueFilename + "'");
-				acm.setImage(uniqueFilename);
+				to.setImage(uniqueFilename);
 			}
-			aService.update(acm);
+			tService.update(to);
 		}
-
-		return "redirect:/accommodations/list";
+		return "redirect:/tours/list";
 	}
 }
