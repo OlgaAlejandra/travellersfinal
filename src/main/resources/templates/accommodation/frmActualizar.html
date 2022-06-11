@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="master/master  ::  head"></head>
+<meta charset="UTF-8">
+</head>
+<body>
+	<header th:replace="master/master :: header"></header>
+	<div class="container">
+		<br />
+		<div>Actualizar Accommodation</div>
+		<br />
+		<form th:action="@{/accommodations/update}" th:object="${acm}"
+			method="post" enctype="multipart/form-data">
+			<div class="col-sm-12">
+				<label class="form-label" for="idAccommodation">Id: </label> <input
+					class="form-control" type="text" th:field="*{idAccommodation}"></input>
+			</div>
+			<br />
+			<div class="col-sm-12">
+				<label class="form-label" for="name">Nombre: </label> <input
+					class="form-control" type="text" th:field="*{name}"></input>
+			</div>
+			<br />
+			<div class="col-sm-12">
+				<label class="form-label" for="description">Descripción: </label> <input
+					class="form-control" type="text" th:field="*{description}"></input>
+			</div>
+			<br />
+			<div class="col-sm-12">
+				<label class="form-label" for="location">Dirección: </label> <input
+					class="form-control" type="text" th:field="*{location}"></input>
+			</div>
+			<br />
+			<div class="col-sm-12">
+				<label class="form-label" for="facilities">Facilidades: </label> <input
+					class="form-control" type="text" th:field="*{facilities}"></input>
+			</div>
+			<br />
+			<div class="col-sm-12">
+				<label for="availabilityIn" class="col-sm-2 col-form-label">Availability
+					In</label>
+				<div class="col-sm-6">
+					<input type="date" th:field="*{availabilityIn}"
+						class="form-control" th:errorclass="'form-control alert-danger'" />
+					<small class="form-text text-danger"
+						th:if="${#fields.hasErrors('availabilityIn')}"
+						th:errors="*{availabilityIn}"></small>
+				</div>
+			</div>
+			<br />
+			<div class="col-sm-12">
+				<label for="availabilityOut" class="col-sm-2 col-form-label">Availability
+					Out</label>
+				<div class="col-sm-6">
+					<input type="date" th:field="*{availabilityOut}"
+						class="form-control" th:errorclass="'form-control alert-danger'" />
+					<small class="form-text text-danger"
+						th:if="${#fields.hasErrors('availabilityOut')}"
+						th:errors="*{availabilityOut}"></small>
+				</div>
+			</div>
+			<br />
+			<div class="col-sm-12">
+				<label class="form-label" for="numRoomAvailable">N°
+					Habitaciones Disponibles: </label> <input class="form-control" type="text"
+					th:field="*{numRoomAvailable}"></input>
+			</div>
+			<br />
+			<div class="col-sm-12">
+				<label class="form-label" for="accommodationType">Habitación
+					Popular: </label> <select name="selectHabitacion" class="form-control"
+					th:field="*{accommodationType.idAccommodationType}">
+					<option th:each="ac:${listaAccommodationTypes}"
+						th:value="${ac.idAccommodationType}" th:text="${ac.description}"
+						th:selected="(${ac.idAccommodationType}==*{accommodationType.idAccommodationType})"></option>
+				</select>
+			</div>
+			<br />
+			<div class="col-sm-12">
+				<label class="form-label" for="destination">Destino: </label>
+				<select name="selectDestino" class="form-control"
+					th:field="*{destination.idDestination}">
+					<option th:each="de:${listaDestinations}"
+						th:value="${de.idDestination}" th:text="${de.name}"
+						th:selected="(${de.idDestination}==*{destination.idDestination})"></option>
+				</select>
+			</div>
+			<br />
+			<div class="col-sm-12">
+				<label class="form-label" for="image">Imagen: </label> <input
+					type="file" name="file" class="form-control" id="image"></input>
+			</div>
+			<hr style="color: #fdfdfd"></hr>
+			<div class="col-sm-12">
+				<input class="btn btn-dark" type="submit" value="Actualizar"></input>
+			</div>
+		</form>
+	</div>
+	<div align="right">
+		<footer th:replace="master/master :: footer"></footer>
+
+	</div>
+</body>
+</html>
