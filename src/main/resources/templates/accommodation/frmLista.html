@@ -23,9 +23,12 @@
 				<img class="card-img-top" style="width: 302px; height: 200px"
 					th:if="${#strings.length(accommodation.image)> 0}"
 					th:src="@{'/accommodations/uploads/' + ${accommodation.image}}"></img>
-				<div class="card-body">
+
+				<div class="card-body" style="font-family: 'Roboto', sans-serif;">
 					<p class="card-text" th:text="${accommodation.description}"></p>
-					<p class="card-text" th:text="${accommodation.location}"></p>
+					<p class="card-text"
+						th:text="'Location: ' + ${accommodation.location}"></p>
+					<p class="card-text" th:text="${accommodation.facilities}"></p>
 					<p class="card-text" th:text="${accommodation.destination.name}"></p>
 
 					<a

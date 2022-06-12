@@ -145,4 +145,5 @@ public class AccommodationController {
 
 		return "redirect:/accommodations/list";
 	}
+
 }
