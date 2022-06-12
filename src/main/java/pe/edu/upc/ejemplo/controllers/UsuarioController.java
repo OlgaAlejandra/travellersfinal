@@ -25,7 +25,7 @@ public class UsuarioController {
 
 	@Autowired
 	private IUsuarioService uService;
-
+	
 	@RequestMapping("/home")
 	public String irHome() {
 		return "home/home";
@@ -38,14 +38,14 @@ public class UsuarioController {
 	}
 
 	@PostMapping("/save")
-	public String saveUsuario(@Valid Usuario usu, BindingResult binRes, Model model) throws Exception {
+	public String saveUsuario(@Valid Usuario u, BindingResult binRes, Model model) throws Exception {
 		if (binRes.hasErrors()) {
 			return "usuario/frmRegistro";
 		} else {
-			uService.insert(usu);
+			uService.insert(u);
 			return "redirect:/usuarios/list";
-		}
 
+		}
 	}
 
 	@GetMapping("/list")

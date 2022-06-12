@@ -18,9 +18,8 @@
 			<br />
 			<div class="col-sm-12">
 				<label class="form-label" for="fullName">Nombres: </label> <input
-					class="form-control" type="text" th:field="*{fullName}"></input>
+					class="form-control" type="text" th:errorclass="'form-control alert-info'"  th:field="*{fullName}"></input>
 				 <small
-							class="form-text text-danger"
 							th:if="${#fields.hasErrors('fullName')}"
 							th:errors="*{fullName}"></small>
 			</div>
