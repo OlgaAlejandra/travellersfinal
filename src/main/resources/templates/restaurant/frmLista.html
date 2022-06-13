@@ -32,7 +32,7 @@
 					<p class="card-text" th:text="${restaurant.destination.name}"></p>
 
 					<a
-						th:href="@{/restaurants/delete?id=}+${restaurant.idrestaurant}"><button
+						th:href="@{/restaurants/delete?id=}+${restaurant.idRestaurant}"><button
 							type="button" class="btn btn-outline-danger">
 							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
 								fill="currentColor" class="bi bi-trash3-fill"
@@ -42,7 +42,7 @@
 </svg>
 							Eliminar
 						</button> </a> <a
-						th:href="@{'/restaurants/goupdate/'+${restaurant.idrestaurant}}"><button
+						th:href="@{'/restaurants/goupdate/'+${restaurant.idRestaurant}}"><button
 							type="button" class="btn btn-outline-success">
 							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
 								fill="currentColor" class="bi bi-arrow-clockwise"
