@@ -25,56 +25,62 @@ public class UsuarioController {
 	@Autowired
 	private IUsuarioService uService;
 	
+	@RequestMapping("/home")
+	public String irHome() {
+		return "home/home";
+	}
+
 	@GetMapping("/new")
 	public String newUsuario(Model model) {
 		model.addAttribute("u", new Usuario());
 		return "usuario/frmRegistro";
 	}
-	
+
 	@PostMapping("/save")
-	public String saveUsuario(@Valid Usuario usu, BindingResult binRes, Model model) {
-		if(binRes.hasErrors()) {
-			return"usuario/frmRegistro";
-		}else {
-			uService.insert(usu);
-			return "redirect:/usuarios/new";
+	public String saveUsuario(@Valid Usuario u, BindingResult binRes, Model model) throws Exception {
+		if (binRes.hasErrors()) {
+			return "usuario/frmRegistro";
+		} else {
+			uService.insert(u);
+			return "redirect:/usuarios/list";
+
 		}
 	}
-	
+
 	@GetMapping("/list")
 	public String listUsuario(Model model) {
 		try {
 			model.addAttribute("listaUsers", uService.list());
 		} catch (Exception e) {
-			model.addAttribute("error",e.getMessage());
+			model.addAttribute("error", e.getMessage());
 		}
-		return"/usuario/frmLista";
+		return "/usuario/frmLista";
 	}
-	
+
 	@RequestMapping("/delete")
 	public String deleteUsuario(Map<String, Object> model, @RequestParam(value = "id") Integer id) {
 		try {
-			if(id!=null && id>0) {
+			if (id != null && id > 0) {
 				uService.delete(id);
 				model.put("listaUsers", uService.list());
 			}
 		} catch (Exception e) {
 			model.put("error", e.getMessage());
 		}
-		return"/usuario/frmLista";
+		return "/usuario/frmLista";
 	}
-	
+
 	@RequestMapping("/goupdate/{id}")
 	public String goUpdateUsuario(@PathVariable int id, Model model) {
 		Optional<Usuario> objUsu = uService.listId(id);
 		model.addAttribute("usu", objUsu.get());
 		return "usuario/frmActualizar";
 	}
-	
+
 	@PostMapping("/update")
 	public String updateUsuario(Usuario usuario) {
 		uService.update(usuario);
 		return "redirect:/usuarios/list";
 	}
-	
+
 }
