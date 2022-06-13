@@ -9,32 +9,31 @@
 		<br />
 		<div
 			style="font-family: 'Roboto', sans-serif; font-size: 150%; font-weight: bold;">Lista
-			de restaurante</div>
+			de atraccions</div>
 		<br />
 		<div class="table-responsive"
 			style="display: grid; grid-template-columns: repeat(4, 1fr); grid-gap: 5px; border-width: 150px;">
 
 			<div class="card border-dark mb-3"
 				style="width: 19rem; margin-right: 15px;"
-				th:each="restaurant:${listaRestaurantes}">
+				th:each="atraccion:${listaAtraciones}">
 				<div class="card-header"
 					style="font-size: 20px; font-family: 'Kdam Thmor Pro', sans-serif;"
-					th:text="${restaurant.name}"></div>
+					th:text="${atraccion.name}"></div>
 				<img class="card-img-top" style="width: 302px; height: 200px"
-					th:if="${#strings.length(restaurant.image)> 0}"
-					th:src="@{'/restaurants/uploads/' + ${restaurant.image}}"></img>
+					th:if="${#strings.length(atraccion.image)> 0}"
+					th:src="@{'/atraccions/uploads/' + ${atraccion.image}}"></img>
 
 				<div class="card-body" style="font-family: 'Roboto', sans-serif;">
-					<p class="card-text" th:text="${restaurant.description}"></p>
+					<p class="card-text" th:text="${atraccion.description}"></p>
 					<p class="card-text"
-						th:text="'Location: ' + ${restaurant.location}"></p>
-					<p class="card-text" th:text="${restaurant.Typefood}"></p>
-					<p class="card-text" th:text="${restaurant.cel}"></p>
-		
-					<p class="card-text" th:text="${restaurant.destination.name}"></p>
+						th:text="'Location: ' + ${atraccion.location}"></p>
+				<p class="card-text"
+						th:text="'type: ' + ${atraccion.type}"></p>
+					<p class="card-text" th:text="${atraccion.destination.name}"></p>
 
 					<a
-						th:href="@{/restaurants/delete?id=}+${restaurant.idRestaurant}"><button
+						th:href="@{/atraccions/delete?id=}+${atraccion.idAtraccion}"><button
 							type="button" class="btn btn-outline-danger">
 							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
 								fill="currentColor" class="bi bi-trash3-fill"
@@ -44,7 +43,7 @@
 </svg>
 							Eliminar
 						</button> </a> <a
-						th:href="@{'/restaurants/goupdate/'+${restaurant.idRestaurant}}"><button
+						th:href="@{'/atraccions/goupdate/'+${atraccion.idAtraccion}}"><button
 							type="button" class="btn btn-outline-success">
 							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
 								fill="currentColor" class="bi bi-arrow-clockwise"

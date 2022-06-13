@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="master/master  ::  head"></head>
+<meta charset="UTF-8">
+</head>
+<body>
+	<header th:replace="master/master :: header"></header>
+	<div class="container">
+		<br />
+		<div>Registrar Atraccion</div>
+		<br />
+		<form th:action="@{/atraccions/save}" th:object="${ac}"
+			method="post" enctype="multipart/form-data">
+			<div class="col-sm-12">
+				<label class="form-label" for="idAtraccion">Id: </label> <input
+					class="form-control" type="text" th:field="*{idAtraccion}"></input>
+			</div>
+			<br />
+			<div class="col-sm-12">
+				<label class="form-label" for="name">Nombre: </label> <input
+					class="form-control" type="text" th:field="*{name}"></input>
+			</div>
+			<br />
+			<div class="col-sm-12">
+				<label class="form-label" for="description">Descripción: </label> <input
+					class="form-control" type="text" th:field="*{description}"></input>
+			</div>
+			<br />
+			
+			<div class="col-sm-12">
+				<label class="form-label" for="Type">Type: </label> <input
+					class="form-control" type="text" th:field="*{Type}"></input>
+			</div>
+			<br />
+			<br />
+			<div class="col-sm-12">
+				<label class="form-label" for="price">Precio: </label> <input
+					class="form-control" type="text" th:field="*{price}"></input>
+			</div>
+			<br />
+			<div class="col-sm-12">
+				<label class="form-label" for="location">Dirección: </label> <input
+					class="form-control" type="text" th:field="*{location}"></input>
+			</div>
+			<br />
+			<div class="col-sm-12">
+				<label for="startTime" class="col-sm-2 col-form-label">Start Time: </label>
+				<div class="col-sm-6">
+					<input type="time" th:field="*{startTime}"
+						class="form-control" th:errorclass="'form-control alert-danger'" />
+					<small class="form-text text-danger"
+						th:if="${#fields.hasErrors('startTime')}"
+						th:errors="*{startTime}"></small>
+				</div>
+			</div>
+			<br />
+			<div class="col-sm-12">
+				<label for="availabilityIn" class="col-sm-2 col-form-label">Availability
+					In</label>
+				<div class="col-sm-6">
+					<input type="date" th:field="*{availabilityIn}"
+						class="form-control" th:errorclass="'form-control alert-danger'" />
+					<small class="form-text text-danger"
+						th:if="${#fields.hasErrors('availabilityIn')}"
+						th:errors="*{availabilityIn}"></small>
+				</div>
+			</div>
+			
+		
+		
+			<br />
+			<div class="col-sm-12">
+				<label class="form-label" for="destination">Destino: </label>
+				<select name="selectDestino" class="form-control"
+					th:field="*{destination.idDestination}">
+					<option th:each="de:${listaDestinations}"
+						th:value="${de.idDestination}" th:text="${de.name}"
+						th:selected="(${de.idDestination}==*{destination.idDestination})"></option>
+				</select>
+			</div>
+			<br />
+			<div class="col-sm-12">
+				<label class="form-label" for="image">Imagen: </label> <input
+					type="file" name="file" class="form-control" id="image"
+					th:text="${ac.image}"></input>
+			</div>
+			<hr style="color: #fdfdfd"></hr>
+			<div class="col-sm-12">
+				<input class="btn btn-dark" type="submit"></input>
+			</div>
+		</form>
+	</div>
+	<div align="right">
+		<footer th:replace="master/master :: footer"></footer>
+
+	</div>
+</body>
+</html>
