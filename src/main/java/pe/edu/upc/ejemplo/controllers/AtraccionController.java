@@ -23,55 +23,54 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
-import pe.edu.upc.ejemplo.entities.Restaurant;
+import pe.edu.upc.ejemplo.entities.Atraccion;
+
+import pe.edu.upc.ejemplo.serviceinterface.IAtraccionService;
 import pe.edu.upc.ejemplo.serviceinterface.IDestinationService;
-import pe.edu.upc.ejemplo.serviceinterface.IRestaurantService;
 import pe.edu.upc.ejemplo.serviceinterface.IUploadFileService;
 
-
 @Controller
-@RequestMapping("/restaurants")
-public class RestaurantController {
+@RequestMapping("/atraccions")
+public class AtraccionController {
 	@Autowired
-	private IRestaurantService rService;
+	private IAtraccionService acService;
 	@Autowired
 	private IDestinationService dService;
 	@Autowired
 	private IUploadFileService uploadFileService;
 	
 	@GetMapping(value = "/uploads/{filename:.+}")
-	public ResponseEntity<Resource> verFoto(@PathVariable String filename){
-		Resource recurso =null;
-		
+	public ResponseEntity<Resource> verFoto(@PathVariable String filename) {
+		Resource recurso = null;
+
 		try {
-			recurso=uploadFileService.load(filename);
-			
-		}catch(Exception e) {
+			recurso = uploadFileService.load(filename);
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return ResponseEntity.ok()
 				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + recurso.getFilename() + "\"")
 				.body(recurso);
-		
 	}
 	
 	@GetMapping("/new")
-	public String newRestaurant(Model model) {
-		model.addAttribute("r", new Restaurant());
+	public String newAtraccion(Model model) {
+		model.addAttribute("ac", new Atraccion());
+		
 		model.addAttribute("listaDestinations", dService.list());
-		return "restaurant/frmRegistro";
+		return "atraccion/frmRegistro";
 	}
-
+	
+	
 	@PostMapping("/save")
-	public String saveRestaurant (@Valid Restaurant rest , BindingResult binRes, Model model,
-			@RequestParam("file") MultipartFile foto, RedirectAttributes flash, SessionStatus status)
-					throws Exception {
+	public String saveAtraccion(@Valid Atraccion acc, BindingResult binRes, Model model,
+			@RequestParam("file") MultipartFile foto, RedirectAttributes flash, SessionStatus status) throws Exception {
 		if (binRes.hasErrors()) {
-			return "restaurant/frmRegistro";
+			return "atraccion/frmRegistro";
 		} else {
 			if (!foto.isEmpty()) {
-				if (rest.getIdRestaurant() > 0 && rest.getImage() != null && rest.getImage().length() > 0) {
-					uploadFileService.delete(rest.getImage());
+				if (acc.getIdAtraccion() > 0 && acc.getImage() != null && acc.getImage().length() > 0) {
+					uploadFileService.delete(acc.getImage());
 				}
 				String uniqueFilename = null;
 				try {
@@ -80,58 +79,64 @@ public class RestaurantController {
 					e.printStackTrace();
 				}
 				flash.addFlashAttribute("info", "Has subido correctamente '" + uniqueFilename + "'");
-				rest.setImage(uniqueFilename);
+				acc.setImage(uniqueFilename);
 			}
-			rService.insert(rest);
+			acService.insert(acc);
 		}
 
-		return "redirect:/restaurant/list";
+		return "redirect:/atraccions/list";
 	}
+
+	
+	
+	
 	
 	@GetMapping("/list")
-	public String listRestaurant(Model model) {
+	public String listAtraccion(Model model) {
 		try {
-			model.addAttribute("listaRestaurantes", rService.list());
+			model.addAttribute("listaAtraciones", acService.list());
 		} catch (Exception e) {
 			model.addAttribute("error", e.getMessage());
 		}
-		return "restaurant/frmLista";
+		return "atraccion/frmLista";
 	}
 	
-	
-	
 	@RequestMapping("/delete")
-	public String deleteRestaurant(Map<String, Object> model, @RequestParam(value = "id") Integer id) {
+	public String deleteAtraccion(Map<String, Object> model, @RequestParam(value = "id") Integer id) {
 		try {
 			if(id!= null && id>0) {
-				rService.delete(id);
-				model.put("listaRestaurantes", rService.list());
+				acService.delete(id);
+				model.put("listaAtraciones", acService.list());
 			}
 		} catch (Exception e) {
 			model.put("error",e.getMessage());
 		}
-		return "restaurant/frmLista";
+		return "atraccion/frmLista";
 	}
+	
 	
 	@RequestMapping("/goupdate/{id}")
-	public String goUpdaterestaurant(@PathVariable int id, Model model) {
-		Optional<Restaurant> objrest = rService.listId(id);
-		
-	
+	public String goUpdateAtraccion(@PathVariable int id, Model model) {
+		Optional<Atraccion> objAcc = acService.listId(id);
 		model.addAttribute("listaDestinations",dService.list());
-		model.addAttribute("rest", objrest.get());
-		return "restaurant/frmActualizar";
+		model.addAttribute("acc", objAcc.get());
+		return "atraccion/frmActualizar";
 	}
 	
+	
+	
+	
+	
+	
 	@PostMapping("/update")
-	public String updaterestaurant(@Valid Restaurant rest, BindingResult binRes, Model model,
+	public String updateAtraccion(@Valid Atraccion acc, BindingResult binRes, Model model,
 			@RequestParam("file") MultipartFile foto, RedirectAttributes flash, SessionStatus status) throws Exception {
 		if (binRes.hasErrors()) {
-			return "restaurant/frmRegistro";
+			return "atraccion/frmRegistro";
 		} else {
 			if (!foto.isEmpty()) {
-				if (rest.getIdRestaurant() > 0 && rest.getImage() != null && rest.getImage().length() > 0) {
-					uploadFileService.delete(rest.getImage());
+				if (acc.getIdAtraccion() > 0 && acc.getImage() != null && acc.getImage().length() > 0) {
+					uploadFileService.delete(acc.getImage());
 				}
 				String uniqueFilename = null;
 				try {
@@ -140,11 +145,11 @@ public class RestaurantController {
 					e.printStackTrace();
 				}
 				flash.addFlashAttribute("info", "Has subido correctamente '" + uniqueFilename + "'");
-				rest.setImage(uniqueFilename);
+				acc.setImage(uniqueFilename);
 			}
-			rService.update(rest);
+			acService.update(acc);
 		}
 
-		return "redirect:/restaurants/list";
+		return "redirect:/atraccions/list";
 	}
 }

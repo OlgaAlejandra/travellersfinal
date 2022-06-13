@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="master/master  ::  head"></head>
+<meta charset="UTF-8">
+</head>
+<body>
+	<header th:replace="master/master :: header"></header>
+	<div class="container">
+		<br />
+		<div>Actualizar Restaurante</div>
+		<br />
+		<form th:action="@{/restaurants/update}" th:object="${rest}"
+			method="post" enctype="multipart/form-data">
+			<div class="col-sm-12">
+				<label class="form-label" for="idRestaurant">Id: </label> <input
+					class="form-control" type="text" th:field="*{idRestaurant}"></input>
+			</div>
+			<br />
+			<div class="col-sm-12">
+				<label class="form-label" for="name">Nombre: </label> <input
+					class="form-control" type="text" th:field="*{name}"></input>
+			</div>
+			<br />
+			<div class="col-sm-12">
+				<label class="form-label" for="description">Descripción: </label> <input
+					class="form-control" type="text" th:field="*{description}"></input>
+			</div>
+			<br />
+			<div class="col-sm-12">
+				<label class="form-label" for="location">Dirección: </label> <input
+					class="form-control" type="text" th:field="*{location}"></input>
+			</div>
+			<br />
+			<div class="col-sm-12">
+				<label class="form-label" for="Typefood">tipo comida: </label> <input
+					class="form-control" type="text" th:field="*{Typefood}"></input>
+			</div>
+		
+			
+				<br />
+			<div class="col-sm-12">
+				<label class="form-label" for="cel">cel: </label> <input
+					class="form-control" type="text" th:field="*{cel}"></input>
+			</div>
+			
+			
+			
+			<br />
+				<br />
+			<div class="col-sm-12">
+				<label class="form-label" for="email">email: </label> <input
+					class="form-control" type="text" th:field="*{email}"></input>
+			</div>
+			
+			
+			
+			<br />
+			<div class="col-sm-12">
+				<label class="form-label" for="destination">Destino: </label>
+				<select name="selectDestino" class="form-control"
+					th:field="*{destination.idDestination}">
+					<option th:each="de:${listaDestinations}"
+						th:value="${de.idDestination}" th:text="${de.name}"
+						th:selected="(${de.idDestination}==*{destination.idDestination})"></option>
+				</select>
+			</div>
+			<br />
+			<div class="col-sm-12">
+				<label class="form-label" for="image">Imagen: </label> <input
+					type="file" name="file" class="form-control" id="image"></input>
+			</div>
+			<hr style="color: #fdfdfd"></hr>
+			<div class="col-sm-12">
+				<input class="btn btn-dark" type="submit" value="Actualizar"></input>
+			</div>
+		</form>
+	</div>
+	<div align="right">
+		<footer th:replace="master/master :: footer"></footer>
+
+	</div>
+</body>
+</html>
