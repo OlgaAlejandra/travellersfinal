@@ -144,11 +144,6 @@ public class RestaurantController {
 			}
 			rService.update(rest);
 		}
-
-<<<<<<< HEAD
 		return "redirect:/resturants/list";
-=======
-		return "redirect:/restaurants/list";
->>>>>>> branch 'master' of git@github.com:OlgaAlejandra/travellersfinal.git
 	}
 }
