@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="master/master  ::  head"></head>
+<meta charset="UTF-8">
+</head>
+<body>
+<header th:replace="master/master :: header"></header>
+	<div class="container">
+		<hr style="background-color: #fdfdfd" />
+		<div
+			style="font-family: 'Roboto Condensed', sans-serif; font-size: 150%;">Registro
+			de usuario</div>
+		<hr style="background-color: #FA251B" />
+		<div>
+			<form th:action="@{/users/guardar}" th:object="${us}" method="post">
+				<div class="col-sm-12">
+					<label for="username" class="col-sm-2 col-form-label">Username:
+					</label> <input type="text" th:field="*{username}" class="form-control"
+						/> 
+				</div>
+
+				<label for="password" class="col-sm-2 col-form-label">Password</label>
+				<div class="col-sm-12">
+					<input type="password" th:field="*{password}" class="form-control">
+
+				</div>
+
+				<label for="estado" class="form-label">Estado</label>
+				<div class="col-sm-12">
+					<input type="checkbox" th:field="*{enabled}" />
+					
+				</div>
+				
+				<hr style="background-color: #FDFDFD" />
+				<div class="form-group row">
+					<div class="col-sm-6">
+						<input type="submit" value="Registrar" class="btn btn-dark" /> <a
+							href="/usuarios/home" class="btn btn-danger"><span>Cancelar</span></a>
+					</div>
+				</div>
+
+			</form>
+		</div>
+	</div>
+
+
+	<div th:if="${mensaje}" class="alert alert-info">
+		<p th:text="${mensaje}"></p>
+	</div>
+	<footer th:replace="master/master :: footer"></footer>
+</body>
+</html>

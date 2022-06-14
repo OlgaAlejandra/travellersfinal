@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="master/master :: head"></head>
+<meta charset="UTF-8"></meta>
+</head>
+<body>
+<header th:replace="master/master:: header"></header>
+
+	<div class="container">
+
+		<hr style="background-color: #fdfdfd" />
+		<div
+			style="font-family: 'Roboto Condensed', sans-serif; font-size: 150%;">Lista
+			de roles</div>
+		<hr style="background-color: #FA251B" />
+		<hr style="background-color: #fdfdfd" />
+		<div style="color: #FA251B">
+			<div>
+
+				<div class="table-responsive">
+					<table class="table table-white">
+						<thead>
+							<tr>
+								<th>Usuario</th>
+								<th>Rol</th>
+
+							</tr>
+						</thead>
+						<tbody id="persona-list">
+							<tr th:each="r:${listaRoles}">
+								<td th:text="${r.user.username}"></td>
+								<td th:text="${r.rol}"></td>
+							</tr>
+						</tbody>
+					</table>
+					<div th:if="${mensaje}" class="alert alert-info">
+						<p th:text="${mensaje}"></p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<footer th:replace="master/master :: footer"></footer>
+</body>
+</html>
