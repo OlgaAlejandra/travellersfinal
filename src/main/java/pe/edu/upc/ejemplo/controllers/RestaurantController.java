@@ -85,7 +85,7 @@ public class RestaurantController {
 			rService.insert(rest);
 		}
 
-		return "redirect:/restaurant/list";
+		return "redirect:/restaurants/list";
 	}
 	
 	@GetMapping("/list")
@@ -144,7 +144,6 @@ public class RestaurantController {
 			}
 			rService.update(rest);
 		}
-
-		return "redirect:/restaurants/list";
+		return "redirect:/resturants/list";
 	}
 }

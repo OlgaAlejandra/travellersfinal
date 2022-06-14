@@ -19,7 +19,7 @@ import pe.edu.upc.ejemplo.entities.AccommodationType;
 import pe.edu.upc.ejemplo.serviceinterface.IAccommodationTypeService;
 
 @Controller
-@RequestMapping("/tb3")
+@RequestMapping("/accommodationtypes")
 public class AccommodationTypeController {
 
 	@Autowired
