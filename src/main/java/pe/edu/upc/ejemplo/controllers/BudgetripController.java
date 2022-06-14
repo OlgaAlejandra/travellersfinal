@@ -38,7 +38,7 @@ public class BudgetripController {
 	@GetMapping("/new")
 	public String newbudgetrip(Model model) {
 		model.addAttribute("b", new BudgeTrip());
-		model.addAttribute("listaTypetrip", tService.list());
+		model.addAttribute("listaTypeTrips", tService.list());
 		return "budgetrip/frmRegistro";
 	}
 	
@@ -82,8 +82,7 @@ public class BudgetripController {
 	public String goUpdatebudgetrip(@PathVariable int id, Model model) {
 		Optional<BudgeTrip> objbtt = bService.listId(id);
 		
-	
-		model.addAttribute("listabudgetrip",bService.list());
+		model.addAttribute("listaTypeTrips", tService.list());
 		model.addAttribute("btt", objbtt.get());
 		return "budgetrip/frmActualizar";
 	}

@@ -1,10 +1,59 @@
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="master/master  ::  head"></head>
+<meta charset="UTF-8">
 </head>
 <body>
+	<header th:replace="master/master :: header"></header>
+	<div class="container">
+		<br />
+		<div>Actualizar BudgetTrip</div>
+		<br />
+		<form th:action="@{/budgetrips/update}" th:object="${btt}" method="post">
 
+			<div class="col-sm-12">
+				<label class="form-label" for="idBudgeTrip">Id: </label> <input
+					class="form-control" type="text" th:field="*{idBudgeTrip}"></input>
+			</div>
+			<br />
+			<div class="col-sm-12">
+				<label class="form-label" for="numBudget">numBudget: </label> <input
+					class="form-control" type="text" th:field="*{numBudget}"></input>
+			</div>
+	
+			<br />
+			<br />
+			<div class="col-sm-12">
+				<label class="form-label" for="numdias">numdias: </label> <input
+					class="form-control" type="text" th:field="*{numdias}"></input>
+			</div>
+	
+			<br />
+			<br />
+			<div class="col-sm-12">
+				<label class="form-label" for="numpeople">numpeople: </label> <input
+					class="form-control" type="text" th:field="*{numpeople}"></input>
+			</div>
+	<br />
+		<div class="col-sm-12">
+			<label class="form-label" for="typeTrip">Type Trip: </label> <select
+				name="selectPerson" class="form-control"
+				th:field="*{typeTrip.idTypeTrip}">
+				<option th:each="de:${listaTypeTrips}" th:value="${de.idTypeTrip}"
+					th:text="${de.name}"
+					th:selected="(${de.idTypeTrip}==*{typeTrip.idTypeTrip})"></option>
+			</select>
+		</div>
+		<br />
+			<br />
+			<div class="col-sm-12">
+				<input class="btn btn-dark" type="submit"></input>
+			</div>
+		</form>
+	</div>
+	<div align="right">
+		<footer th:replace="master/master :: footer"></footer>
+
+	</div>
 </body>
 </html>
