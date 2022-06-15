@@ -145,5 +145,16 @@ public class AccommodationController {
 
 		return "redirect:/accommodations/list";
 	}
+	
+	@GetMapping(value = "/ver/{id}")
+	public String ver(@PathVariable(value = "id") int id, Map<String, Object> model, RedirectAttributes flash) {
+		Optional<Accommodation> accommodation = aService.listId(id);
+		if(accommodation==null) {
+			flash.addFlashAttribute("error", "El Alojamiento no existe en la base de datos");
+			return "redirect:/accommodations/list";
+			
+		}
+		model.put("alojamiento", accommodation.get());
+		return "accommodation/ver";	}
 
 }

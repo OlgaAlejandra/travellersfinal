@@ -3,6 +3,7 @@ package pe.edu.upc.ejemplo.serviceimplement;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import pe.edu.upc.ejemplo.entities.Review;
@@ -12,6 +13,7 @@ import pe.edu.upc.ejemplo.serviceinterface.IReviewService;
 @Service
 public class ReviewServiceImpl implements IReviewService{
 
+	@Autowired
 	private IReviewRepository reviewRepository;
 	
 	@Override

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="master/master  ::  head"></head>
+<meta charset="UTF-8"></meta>
+
+<body>
+	<header th:replace="master/master :: header"></header>
+	<div class="container">
+	<br/>
+		<div class="card">
+			<div class="card-header text-white bg-dark mb-3" th:text="${restaurant.name}"></div>
+			<div class="card-body">
+
+				<div class="table-responsive">
+					<table class="table table-white">
+
+						<tbody>
+							<tr>
+								<td>Descripción</td>
+								<td th:text="${restaurant.description}"></td>
+							</tr>
+							<tr>
+								<td>Dirección</td>
+								<td th:text="${restaurant.location}"></td>
+							</tr>
+							<tr>
+								<td>Tipo de Comida</td>
+								<td th:text="${restaurant.Typefood}"></td>
+							</tr>
+							<tr>
+								<td>Email</td>
+								<td th:text="${restaurant.email}"></td>
+							</tr>
+							<tr>
+								<td>Teléfono</td>
+								<td th:text="${restaurant.cel}"></td>
+							</tr>
+							<tr>
+								<td>Destino</td>
+								<td th:text="${restaurant.destination.name}"></td>
+							</tr>
+							<tr>
+								<td>Foto</td>
+								<td><img th:if="${#strings.length(restaurant.image)> 0}"
+									class="img-thumbnail rounded float-left"
+									style="max-width: 60%; max-height: 90%"
+									th:src="@{'/restaurants/uploads/' + ${restaurant.image}}"
+									th:alt="${restaurant.image}" /></td>
+							</tr>
+						</tbody>
+
+					</table>
+
+					<a th:href="@{/restaurants/list}" type="button"
+						class="btn btn-primary k"> <span
+						class="glyphicon glyphicon-circle-arrow-left"></span> Volver
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div align="right">
+		<footer th:replace="master/master :: footer"></footer>
+
+	</div>
+</body>
+</html>

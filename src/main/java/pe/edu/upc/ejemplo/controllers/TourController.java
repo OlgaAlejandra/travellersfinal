@@ -138,4 +138,15 @@ public class TourController {
 		}
 		return "redirect:/tours/list";
 	}
+	
+	@GetMapping(value = "/ver/{id}")
+	public String ver(@PathVariable(value = "id") int id, Map<String, Object> model, RedirectAttributes flash) {
+		Optional<Tour> tour = tService.listId(id);
+		if(tour==null) {
+			flash.addFlashAttribute("error", "El Tour no existe en la base de datos");
+			return "redirect:/tours/list";
+		}
+		model.put("tour", tour.get());
+		return"tour/ver";
+	}
 }

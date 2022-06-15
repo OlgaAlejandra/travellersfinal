@@ -1,8 +1,68 @@
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="master/master  ::  head"></head>
+<meta charset="UTF-8">
+</head>
+<header th:replace="master/master :: header"></header>
+<div class="container">
+	<br />
+	<div style="font-family: 'Roboto', sans-serif; font-size: 150%">Actualizar
+		Reviews - Alojamientos</div>
+	<br />
+	<form th:action="@{/reviews/update}" th:object="${revi}" method="post">
+
+		<div class="col-sm-12">
+			<label class="form-label" for="idReview">Id: </label> <input
+				class="form-control" type="text" th:field="*{idReview}"></input>
+		</div>
+		<br />
+		<div class="col-sm-12">
+			<label class="form-label" for="description">Descripción: </label> <input
+				class="form-control" type="text" th:field="*{description}"></input>
+		</div>
+		<br />
+		<div class="col-sm-12">
+			<label class="form-label" for="numRating">Rating: </label> <select
+				name="select" class="form-control" th:field="*{numRating}">
+				<option value="1" selected="selected">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+
+			</select>
+		</div>
+		<br />
+		<div class="col-sm-12">
+			<label class="form-label" for="usuario">Usuario: </label> <select
+				name="selectUsuario" class="form-control"
+				th:field="*{usuario.idUsuario}">
+				<option th:each="r:${listaUsers}" th:value="${r.idUsuario}"
+					th:text="${r.fullName}"
+					th:selected="(${r.idUsuario}==*{usuario.idUsuario})"></option>
+			</select>
+		</div>
+		<br />
+		<div class="col-sm-12">
+			<label class="form-label" for="accommodation">Alojamiento: </label> <select
+				name="selectAlojamiento" class="form-control"
+				th:field="*{accommodation.idAccommodation}">
+				<option th:each="r:${listaAlojamientos}"
+					th:value="${r.idAccommodation}" th:text="${r.name}"
+					th:selected="(${r.idAccommodation}==*{accommodation.idAccommodation})"></option>
+			</select>
+		</div>
+		<br />
+
+		<div class="col-sm-12">
+			<input class="btn btn-dark" type="submit"></input>
+		</div>
+	</form>
+</div>
+<div align="right">
+	<footer th:replace="master/master :: footer"></footer>
+
+</div>
 </head>
 <body>
 

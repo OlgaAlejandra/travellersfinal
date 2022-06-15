@@ -28,8 +28,17 @@
 			<br />
 			<br />
 			<div class="col-sm-12">
-				<label class="form-label" for="type">type: </label> <input
-					class="form-control" type="text" th:field="*{type}"></input>
+				<label class="form-label" for="Type">Type: </label> <select
+				name="select" class="form-control" th:field="*{Type}">
+				<option value="Naturales" selected="selected">Naturales</option>
+				<option value="Patrimoniales">Patrimoniales</option>
+				<option value="Turísticas">Turísticas</option>
+				<option value="Cultural">Cultural</option>
+				<option value="Miradores">Miradores</option>
+				<option value="Parque Temático">Parque Temático</option>
+				
+				
+			</select>
 			</div>
 			<br />
 			<br />

@@ -31,9 +31,17 @@
 					class="form-control" type="text" th:field="*{location}"></input>
 			</div>
 			<br />
-			<div class="col-sm-12">
-				<label class="form-label" for="Typefood">tipo comida: </label> <input
-					class="form-control" type="text" th:field="*{Typefood}"></input>
+						<div class="col-sm-12">
+				<label class="form-label" for="Typefood">Tipo comida: </label> <select
+				name="select" class="form-control" th:field="*{Typefood}">
+				<option value="Buffet" selected="selected">Buffet</option>
+				<option value="Temático">Temático</option>
+				<option value="Fusión">Fusión</option>
+				<option value="Gourmet">Gourmet</option>
+				<option value="Peruana">Peruana</option>
+				<option value="Fast Food">Fast Food</option>
+				<option value="Internacional">Internacional</option>
+			</select>
 			</div>
 		
 			

@@ -22,7 +22,6 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-
 import pe.edu.upc.ejemplo.entities.Atraccion;
 
 import pe.edu.upc.ejemplo.serviceinterface.IAtraccionService;
@@ -38,7 +37,7 @@ public class AtraccionController {
 	private IDestinationService dService;
 	@Autowired
 	private IUploadFileService uploadFileService;
-	
+
 	@GetMapping(value = "/uploads/{filename:.+}")
 	public ResponseEntity<Resource> verFoto(@PathVariable String filename) {
 		Resource recurso = null;
@@ -52,16 +51,15 @@ public class AtraccionController {
 				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + recurso.getFilename() + "\"")
 				.body(recurso);
 	}
-	
+
 	@GetMapping("/new")
 	public String newAtraccion(Model model) {
 		model.addAttribute("ac", new Atraccion());
-		
+
 		model.addAttribute("listaDestinations", dService.list());
 		return "atraccion/frmRegistro";
 	}
-	
-	
+
 	@PostMapping("/save")
 	public String saveAtraccion(@Valid Atraccion acc, BindingResult binRes, Model model,
 			@RequestParam("file") MultipartFile foto, RedirectAttributes flash, SessionStatus status) throws Exception {
@@ -87,10 +85,6 @@ public class AtraccionController {
 		return "redirect:/atraccions/list";
 	}
 
-	
-	
-	
-	
 	@GetMapping("/list")
 	public String listAtraccion(Model model) {
 		try {
@@ -100,34 +94,28 @@ public class AtraccionController {
 		}
 		return "atraccion/frmLista";
 	}
-	
+
 	@RequestMapping("/delete")
 	public String deleteAtraccion(Map<String, Object> model, @RequestParam(value = "id") Integer id) {
 		try {
-			if(id!= null && id>0) {
+			if (id != null && id > 0) {
 				acService.delete(id);
 				model.put("listaAtraciones", acService.list());
 			}
 		} catch (Exception e) {
-			model.put("error",e.getMessage());
+			model.put("error", e.getMessage());
 		}
 		return "atraccion/frmLista";
 	}
-	
-	
+
 	@RequestMapping("/goupdate/{id}")
 	public String goUpdateAtraccion(@PathVariable int id, Model model) {
 		Optional<Atraccion> objAcc = acService.listId(id);
-		model.addAttribute("listaDestinations",dService.list());
+		model.addAttribute("listaDestinations", dService.list());
 		model.addAttribute("acc", objAcc.get());
 		return "atraccion/frmActualizar";
 	}
-	
-	
-	
-	
-	
-	
+
 	@PostMapping("/update")
 	public String updateAtraccion(@Valid Atraccion acc, BindingResult binRes, Model model,
 			@RequestParam("file") MultipartFile foto, RedirectAttributes flash, SessionStatus status) throws Exception {
@@ -151,5 +139,16 @@ public class AtraccionController {
 		}
 
 		return "redirect:/atraccions/list";
+	}
+
+	@GetMapping(value = "/ver/{id}")
+	public String ver(@PathVariable(value = "id") int id, Map<String, Object> model, RedirectAttributes flash) {
+		Optional<Atraccion> attraction = acService.listId(id);
+		if(attraction==null) {
+			flash.addFlashAttribute("error", "La Atracción no existe en la base de datos");
+			return "redirect:/atraccions/list";
+			}
+		model.put("attraction", attraction.get());
+		return "atraccion/ver";
 	}
 }

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="master/master  ::  head"></head>
+<meta charset="UTF-8"></meta>
+
+<body>
+	<header th:replace="master/master :: header"></header>
+	<div class="container">
+	<br/>
+		<div class="card">
+			<div class="card-header text-white bg-dark mb-3" th:text="${alojamiento.name}"></div>
+			<div class="card-body">
+
+				<div class="table-responsive">
+					<table class="table table-white">
+
+						<tbody>
+							<tr>
+								<td>Descripción</td>
+								<td th:text="${alojamiento.description}"></td>
+							</tr>
+							<tr>
+								<td>Dirección</td>
+								<td th:text="${alojamiento.location}"></td>
+							</tr>
+							<tr>
+								<td>Facilidades</td>
+								<td th:text="${alojamiento.facilities}"></td>
+							</tr>
+							<tr>
+								<td>Availability In</td>
+								<td th:text="${#dates.format(alojamiento.availabilityIn,'dd/MM/yyyy')}"></td>
+							</tr>
+							<tr>
+								<td>Availability Out</td>
+								<td th:text="${#dates.format(alojamiento.availabilityOut,'dd/MM/yyyy')}"></td>
+							</tr>
+							<tr>
+								<td>N° Habitaciones Disponibles</td>
+								<td th:text="${alojamiento.numRoomAvailable}"></td>
+							</tr>
+							<tr>
+								<td>Habitación Popular</td>
+								<td th:text="${alojamiento.accommodationType.description}"></td>
+							</tr>
+							<tr>
+								<td>Destino</td>
+								<td th:text="${alojamiento.destination.name}"></td>
+							</tr>
+							<tr>
+								<td>Foto</td>
+								<td><img th:if="${#strings.length(alojamiento.image)> 0}"
+									class="img-thumbnail rounded float-left"
+									style="max-width: 60%; max-height: 90%"
+									th:src="@{'/accommodations/uploads/' + ${alojamiento.image}}"
+									th:alt="${alojamiento.image}" /></td>
+							</tr>
+						</tbody>
+
+					</table>
+
+					<a th:href="@{/accommodations/list}" type="button"
+						class="btn btn-primary k"> <span
+						class="glyphicon glyphicon-circle-arrow-left"></span> Volver
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div align="right">
+		<footer th:replace="master/master :: footer"></footer>
+
+	</div>
+</body>
+</html>

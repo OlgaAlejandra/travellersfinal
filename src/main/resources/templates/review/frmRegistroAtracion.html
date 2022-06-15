@@ -7,9 +7,9 @@
 <div class="container">
 	<br />
 	<div style="font-family: 'Roboto', sans-serif; font-size: 150%">Registro
-		de Reviews - Alojamientos</div>
+		de Reviews - Atracciones</div>
 	<br />
-	<form th:action="@{/reviews/save}" th:object="${re}" method="post">
+	<form th:action="@{/reviewatraccions/save}" th:object="${re}" method="post">
 
 		<div class="col-sm-12">
 			<label class="form-label" for="idReview">Id: </label> <input
@@ -44,12 +44,12 @@
 		</div>
 		<br />
 		<div class="col-sm-12">
-			<label class="form-label" for="accommodation">Alojamiento: </label> <select
-				name="selectAlojamiento" class="form-control"
-				th:field="*{accommodation.idAccommodation}">
-				<option th:each="r:${listaAlojamientos}" th:value="${r.idAccommodation}"
+			<label class="form-label" for="atraccion">Atracción: </label> <select
+				name="selectAtraccion" class="form-control"
+				th:field="*{atraccion.idAtraccion}">
+				<option th:each="r:${listaAtraciones}" th:value="${r.idAtraccion}"
 					th:text="${r.name}"
-					th:selected="(${r.idAccommodation}==*{accommodation.idAccommodation})"></option>
+					th:selected="(${r.idAtraccion}==*{atraccion.idAtraccion})"></option>
 			</select>
 		</div>
 		<br />

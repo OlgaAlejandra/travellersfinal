@@ -7,12 +7,7 @@
 	<header th:replace="master/master :: header"></header>
 <div class="container">
 		<br />
-<<<<<<< HEAD
-		<div>actualizar Accommodation Type</div>
-=======
-		<div>Actualizar Accommodation Type</div>
->>>>>>> 059108069b36d1fe944fe57d5128775ec91bc44e
-		<br />
+		<div style="font-family: 'Roboto', sans-serif; font-size: 150%">Actualizar Accommodation Types</div>
 		<form th:action="@{/accommodationtypes/update}" th:object="${atype}" method="post">
 
 			<div class="col-sm-12">
@@ -27,8 +22,13 @@
 
 			<br />
 			<div class="col-sm-12">
-				<label class="form-label" for="numBeds">N° Camas: </label> <input
-					class="form-control" type="text" th:field="*{numBeds}"></input>
+				<label class="form-label" for="numBeds">N° Camas: </label> <select
+					name="select" class="form-control" th:field="*{numBeds}">
+					<option value="1" selected="selected">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+				</select>
 			</div>
 			<br />
 			<div class="col-sm-12">
@@ -37,8 +37,13 @@
 			</div>
 			<br />
 			<div class="col-sm-12">
-				<label class="form-label" for="numSleeps">N° Personas: </label> <input
-					class="form-control" type="text" th:field="*{numSleeps}"></input>
+				<label class="form-label" for="numSleeps">N° Personas: </label> <select
+					name="select" class="form-control" th:field="*{numSleeps}">
+					<option value="1" selected="selected">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+				</select>
 			</div>
 			<br />
 			<div class="col-sm-12">

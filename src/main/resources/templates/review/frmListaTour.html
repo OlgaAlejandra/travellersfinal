@@ -9,7 +9,7 @@
 	<div class="container">
 		<br />
 		<div style="font-family: 'Roboto', sans-serif; font-size: 150%">Lista
-			de Reviews - Alojamientos</div>
+			de Reviews - Tours</div>
 		<div class="table-responsive">
 			<table class="table table-striped">
 				<thead>
@@ -18,19 +18,19 @@
 						<th style="font-family: 'Roboto Condensed', sans-serif;">Descripción</th>
 						<th style="font-family: 'Roboto Condensed', sans-serif;">Rating</th>
 						<th style="font-family: 'Roboto Condensed', sans-serif;">Usuario</th>
-						<th style="font-family: 'Roboto Condensed', sans-serif;">Alojamiento</th>
+						<th style="font-family: 'Roboto Condensed', sans-serif;">Tour</th>
 						<th style="font-family: 'Roboto Condensed', sans-serif;">Operación</th>
 						<th style="font-family: 'Roboto Condensed', sans-serif;">Operación</th>
 					</tr>
 				</thead>
 				<tbody id="review-list">
-					<tr th:each="review:${listaReviews}">
+					<tr th:each="review:${listaReviewsT}">
 						<td th:text="${review.idReview}"></td>
 						<td th:text="${review.description}"></td>
 						<td th:text="${review.numRating}"></td>
 						<td th:text="${review.usuario.fullName}"></td>
-						<td th:text="${review.accommodation.name}"></td>
-						<td><a th:href="@{/reviews/delete?id=}+${review.idReview}"><button
+						<td th:text="${review.tour.name}"></td>
+						<td><a th:href="@{/reviewtours/delete?id=}+${review.idReview}"><button
 									type="button" class="btn btn-outline-danger">
 									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
 										fill="currentColor" class="bi bi-trash3-fill"
@@ -41,7 +41,7 @@
 									Eliminar
 								</button> </a></td>
 						<td><a
-							th:href="@{'/reviews/goupdate/'+${review.idReview}}"><button
+							th:href="@{'/reviewtours/goupdate/'+${review.idReview}}"><button
 									type="button" class="btn btn-outline-success">
 									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
 										fill="currentColor" class="bi bi-arrow-clockwise"

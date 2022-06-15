@@ -15,48 +15,48 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import pe.edu.upc.ejemplo.entities.Review;
-import pe.edu.upc.ejemplo.serviceinterface.IAccommodationService;
-import pe.edu.upc.ejemplo.serviceinterface.IReviewService;
+import pe.edu.upc.ejemplo.entities.ReviewAtraccion;
+import pe.edu.upc.ejemplo.entities.ReviewTour;
+import pe.edu.upc.ejemplo.serviceinterface.IAtraccionService;
+import pe.edu.upc.ejemplo.serviceinterface.IReviewAtraccionService;
 import pe.edu.upc.ejemplo.serviceinterface.IUsuarioService;
 
 @Controller
-@RequestMapping("/reviews")
-public class ReviewController {
-
+@RequestMapping("/reviewatraccions")
+public class ReviewAtraccionController {
 	@Autowired
-	private IReviewService reService;
+	private IReviewAtraccionService reService;
 	@Autowired
-	private IAccommodationService aService;
+	private IAtraccionService acService;
 	@Autowired
 	private IUsuarioService uService;
 	
 	@GetMapping("/new")
 	public String newReview(Model model) {
-		model.addAttribute("re", new Review());
-		model.addAttribute("listaAlojamientos",aService.list());
+		model.addAttribute("re", new ReviewTour());
+		model.addAttribute("listaAtraciones",acService.list());
 		model.addAttribute("listaUsers",uService.list());
-		return"review/frmRegistro";
+		return"review/frmRegistroAtracion";
 	}
 	
 	@PostMapping("/save")
-	public String saveReview(@Valid Review rev, BindingResult binRes, Model model) {
+	public String saveReview(@Valid ReviewAtraccion rev, BindingResult binRes, Model model) {
 		if(binRes.hasErrors()) {
-			return"review/frmRegistro";
+			return"review/frmRegistroAtracion";
 		}else {
 			reService.insert(rev);
-			return"redirect:/reviews/list";
+			return"redirect:/reviewatraccions/list";
 		}
 	}
 	
 	@GetMapping("/list")
 	public String listReview(Model model) {
 		try {
-			model.addAttribute("listaReviews", reService.list());
+			model.addAttribute("listaReviewsA", reService.list());
 		} catch (Exception e) {
 			model.addAttribute("error",e.getMessage());
 		}
-		return "/review/frmLista";
+		return "/review/frmListaAtraccion";
 	}
 	
 	@RequestMapping("/delete")
@@ -64,29 +64,24 @@ public class ReviewController {
 		try {
 			if(id!=null && id>0) {
 				reService.delete(id);
-				model.put("listaReviews", reService.list());
+				model.put("listaReviewsA", reService.list());
 			}
 		} catch (Exception e) {
 			model.put("error", e.getMessage());
 		}
-		return "/review/frmLista";
+		return "/review/frmListaAtraccion";
 	}
-	
 	@RequestMapping("/goupdate/{id}")
 	public String goUpdateReview(@PathVariable int id, Model model) {
-		Optional<Review> objRev = reService.listId(id);
-		model.addAttribute("listaAlojamientos",aService.list());
+		Optional<ReviewAtraccion> objRev = reService.listId(id);
 		model.addAttribute("listaUsers",uService.list());
+		model.addAttribute("listaAtraciones",acService.list());
 		model.addAttribute("revi",objRev.get());
-		return "review/frmActualizar";
+		return "review/frmActualizarAtraccion";
 	}
-	
 	@PostMapping("/update")
-	public String updateReview(Review review) {
+	public String updateReview(ReviewAtraccion review) {
 		reService.update(review);
-		return"redirect:/reviews/list";
+		return"redirect:/reviewatraccions/list";
 	}
-	
-	
-	
 }

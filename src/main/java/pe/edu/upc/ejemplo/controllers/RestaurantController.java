@@ -22,12 +22,10 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-
 import pe.edu.upc.ejemplo.entities.Restaurant;
 import pe.edu.upc.ejemplo.serviceinterface.IDestinationService;
 import pe.edu.upc.ejemplo.serviceinterface.IRestaurantService;
 import pe.edu.upc.ejemplo.serviceinterface.IUploadFileService;
-
 
 @Controller
 @RequestMapping("/restaurants")
@@ -38,23 +36,23 @@ public class RestaurantController {
 	private IDestinationService dService;
 	@Autowired
 	private IUploadFileService uploadFileService;
-	
+
 	@GetMapping(value = "/uploads/{filename:.+}")
-	public ResponseEntity<Resource> verFoto(@PathVariable String filename){
-		Resource recurso =null;
-		
+	public ResponseEntity<Resource> verFoto(@PathVariable String filename) {
+		Resource recurso = null;
+
 		try {
-			recurso=uploadFileService.load(filename);
-			
-		}catch(Exception e) {
+			recurso = uploadFileService.load(filename);
+
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return ResponseEntity.ok()
 				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + recurso.getFilename() + "\"")
 				.body(recurso);
-		
+
 	}
-	
+
 	@GetMapping("/new")
 	public String newRestaurant(Model model) {
 		model.addAttribute("r", new Restaurant());
@@ -63,9 +61,8 @@ public class RestaurantController {
 	}
 
 	@PostMapping("/save")
-	public String saveRestaurant (@Valid Restaurant rest , BindingResult binRes, Model model,
-			@RequestParam("file") MultipartFile foto, RedirectAttributes flash, SessionStatus status)
-					throws Exception {
+	public String saveRestaurant(@Valid Restaurant rest, BindingResult binRes, Model model,
+			@RequestParam("file") MultipartFile foto, RedirectAttributes flash, SessionStatus status) throws Exception {
 		if (binRes.hasErrors()) {
 			return "restaurant/frmRegistro";
 		} else {
@@ -87,7 +84,7 @@ public class RestaurantController {
 
 		return "redirect:/restaurants/list";
 	}
-	
+
 	@GetMapping("/list")
 	public String listRestaurant(Model model) {
 		try {
@@ -97,32 +94,29 @@ public class RestaurantController {
 		}
 		return "restaurant/frmLista";
 	}
-	
-	
-	
+
 	@RequestMapping("/delete")
 	public String deleteRestaurant(Map<String, Object> model, @RequestParam(value = "id") Integer id) {
 		try {
-			if(id!= null && id>0) {
+			if (id != null && id > 0) {
 				rService.delete(id);
 				model.put("listaRestaurantes", rService.list());
 			}
 		} catch (Exception e) {
-			model.put("error",e.getMessage());
+			model.put("error", e.getMessage());
 		}
 		return "restaurant/frmLista";
 	}
-	
+
 	@RequestMapping("/goupdate/{id}")
 	public String goUpdaterestaurant(@PathVariable int id, Model model) {
 		Optional<Restaurant> objrest = rService.listId(id);
-		
-	
-		model.addAttribute("listaDestinations",dService.list());
+
+		model.addAttribute("listaDestinations", dService.list());
 		model.addAttribute("rest", objrest.get());
 		return "restaurant/frmActualizar";
 	}
-	
+
 	@PostMapping("/update")
 	public String updaterestaurant(@Valid Restaurant rest, BindingResult binRes, Model model,
 			@RequestParam("file") MultipartFile foto, RedirectAttributes flash, SessionStatus status) throws Exception {
@@ -144,6 +138,17 @@ public class RestaurantController {
 			}
 			rService.update(rest);
 		}
-		return "redirect:/resturants/list";
+		return "redirect:/restaurants/list";
+	}
+
+	@GetMapping(value = "/ver/{id}")
+	public String ver(@PathVariable(value = "id") int id, Map<String, Object> model, RedirectAttributes flash) {
+		Optional<Restaurant> restaurant = rService.listId(id);
+		if(restaurant==null) {
+			flash.addFlashAttribute("error", "El Restaurant no existe en la base de datos");
+			return "redirect:/resturants/list";
+		}
+		model.put("restaurant", restaurant.get());
+		return"restaurant/ver";
 	}
 }
