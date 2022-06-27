@@ -12,4 +12,9 @@ public interface IDestinationService {
 	public void delete(int idDestination);
 	Optional<Destination> listId(int idDestination);
 	public void update(Destination destination);
+	public List<String[]> destinationAmount();
+	public List<String[]> destinationAmountRes();
+	public List<String[]> destinationAmountAtr();
+	public List<String[]> destinationAmountTou();
+
 }

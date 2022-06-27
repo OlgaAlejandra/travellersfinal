@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="master/master  ::  head"></head>
+<meta charset="UTF-8">
+</head>
+<body>
+	<header th:replace="master/master :: header"></header>
+	<div class="container">
+		<br />
+		<div style="font-family: 'Roboto', sans-serif; font-size: 150%">Destinos</div>
+
+		<hr class="sidebar-divider">
+		<br /> <br />
+
+		<div class="table-responsive"
+			style="display: grid; grid-template-columns: repeat(4, 1fr); grid-gap: 100px; border-width: 150px;">
+
+
+			<table class="table table-striped">
+				<thead class="thead-dark">
+					<tr align="center">
+						<th scope="col">Destino</th>
+						<th scope="col">Alojamiento</th>
+
+					</tr>
+				</thead>
+				<tbody>
+					<tr align="center" th:each="r: ${listaDestinationAmount}">
+						<td th:text="${r[0]}"></td>
+						<td th:text="${r[1]}"></td>
+				</tbody>
+			</table>
+
+
+			<table class="table table-striped">
+				<thead class="thead-dark">
+					<tr align="center">
+						<th scope="col">Destino</th>
+
+						<th scope="col">Restaurantes</th>
+
+					</tr>
+				</thead>
+				<tbody>
+					<tr align="center" th:each="r: ${listaDestinationAmountRes}">
+
+						<td th:text="${r[0]}"></td>
+						<td th:text="${r[1]}"></td>
+				</tbody>
+			</table>
+
+			<table class="table table-striped">
+				<thead class="thead-dark">
+					<tr align="center">
+						<th scope="col">Destino</th>
+						<th scope="col">Atracción</th>
+
+					</tr>
+				</thead>
+				<tbody>
+					<tr align="center" th:each="r: ${listsDestinationAmountAtr}">
+						<td th:text="${r[0]}"></td>
+						<td th:text="${r[1]}"></td>
+				</tbody>
+			</table>
+
+
+			<table class="table table-striped">
+				<thead class="thead-dark">
+					<tr align="center">
+						<th scope="col">Destino</th>
+
+						<th scope="col">Tour</th>
+
+					</tr>
+				</thead>
+				<tbody>
+					<tr align="center" th:each="r: ${listaDestinationAmountTou}">
+
+						<td th:text="${r[0]}"></td>
+						<td th:text="${r[1]}"></td>
+				</tbody>
+			</table>
+
+			<p th:text="${mensaje}"></p>
+		</div>
+
+	</div>
+</body>
+</html>

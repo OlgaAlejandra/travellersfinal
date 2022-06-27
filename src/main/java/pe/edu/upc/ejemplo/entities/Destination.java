@@ -30,19 +30,26 @@ public class Destination {
 	@JoinColumn(name = "idTypeTrip")
 	private TypeTrip typeTrip;
 
+	@Column(name = "image")
+	private String image;
+	
 	public Destination() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Destination(int idDestination, String name, String country, String description, TypeTrip typeTrip) {
+	public Destination(int idDestination, String name, String country, String description, TypeTrip typeTrip,
+			String image) {
 		super();
 		this.idDestination = idDestination;
 		this.name = name;
 		this.country = country;
 		this.description = description;
 		this.typeTrip = typeTrip;
+		this.image = image;
 	}
+
+
 
 	public int getIdDestination() {
 		return idDestination;
@@ -83,6 +90,16 @@ public class Destination {
 	public void setTypeTrip(TypeTrip typeTrip) {
 		this.typeTrip = typeTrip;
 	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+	
+	
 	
 	
 }

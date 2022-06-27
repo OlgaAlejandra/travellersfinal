@@ -41,6 +41,30 @@ public class DestinationServiceImpl implements IDestinationService{
 		destinationRepository.save(destination);
 	}
 
+	@Override
+	public List<String[]> destinationAmount() {
+		// TODO Auto-generated method stub
+		return destinationRepository.destinationAmount();
+	}
+
+	@Override
+	public List<String[]> destinationAmountRes() {
+		// TODO Auto-generated method stub
+		return destinationRepository.destinationAmountRes();
+	}
+
+	@Override
+	public List<String[]> destinationAmountAtr() {
+		// TODO Auto-generated method stub
+		return destinationRepository.destinationAmountAtr();
+	}
+
+	@Override
+	public List<String[]> destinationAmountTou() {
+		// TODO Auto-generated method stub
+		return destinationRepository.destinationAmountTou();
+	}
+
 
 
 
