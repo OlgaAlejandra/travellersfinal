@@ -18,7 +18,7 @@ import javax.persistence.Table;
 public class Users {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
 	@Column(length = 30, unique = true)
@@ -29,9 +29,26 @@ public class Users {
 
 	private Boolean enabled;
 
+	private String fullName;
+	
+	private String email;
+
+	private String numPhone;
+
+	private String nationality;
+
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "user_id")
 	private List<Role> roles;
+
+	
+	
+	public Users() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
+	
 
 	public Long getId() {
 		return id;
@@ -72,5 +89,50 @@ public class Users {
 	public void setRoles(List<Role> roles) {
 		this.roles = roles;
 	}
+
+	public String getFullName() {
+		return fullName;
+	}
+
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
+	}
+
+
+
+	public String getEmail() {
+		return email;
+	}
+
+
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+
+
+	public String getNumPhone() {
+		return numPhone;
+	}
+
+
+
+	public void setNumPhone(String numPhone) {
+		this.numPhone = numPhone;
+	}
+
+
+
+	public String getNationality() {
+		return nationality;
+	}
+
+
+
+	public void setNationality(String nationality) {
+		this.nationality = nationality;
+	}
+	
 
 }

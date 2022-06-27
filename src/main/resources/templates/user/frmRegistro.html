@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 </head>
 <body>
-<header th:replace="master/master :: header"></header>
+	<header th:replace="master/master :: header"></header>
 	<div class="container">
 		<hr style="background-color: #fdfdfd" />
 		<div
@@ -15,8 +15,7 @@
 			<form th:action="@{/users/guardar}" th:object="${us}" method="post">
 				<div class="col-sm-12">
 					<label for="username" class="col-sm-2 col-form-label">Username:
-					</label> <input type="text" th:field="*{username}" class="form-control"
-						/> 
+					</label> <input type="text" th:field="*{username}" class="form-control" />
 				</div>
 
 				<label for="password" class="col-sm-2 col-form-label">Password</label>
@@ -25,12 +24,57 @@
 
 				</div>
 
+				<label for="fullName" class="col-sm-2 col-form-label">Nombre</label>
+				<div class="col-sm-12">
+					<input type="text" th:field="*{fullName}" class="form-control">
+
+				</div>
+				<br />
+				<div class="col-sm-12">
+					<label class="form-label" for="email">Email: </label> <input
+						class="form-control" type="text" th:field="*{email}"></input>
+					<p th:if="${#fields.hasErrors('email')}"
+						th:class="${#fields.hasErrors('email')}? error">Invalid Age</p>
+				</div>
+				<br />
+			<div class="col-sm-12">
+				<label class="form-label" for="numPhone">Numero Telefono: </label> <input
+					class="form-control" type="text" th:field="*{numPhone}"></input>
+				<p th:if="${#fields.hasErrors('numPhone')}"
+					th:class="${#fields.hasErrors('numPhone')}? error">Invalid Age</p>
+			</div>
+			<br />
+			<div class="col-sm-12">
+				<label class="form-label" for="nationality">Nacionalidad: </label> <select
+					name="select" class="form-control" th:field="*{nationality}">
+					<option value="Peruano" selected="selected">Peruano</option>
+					<option value="Mexicano">Mexicano</option>
+					<option value="Francés">Francés</option>
+					<option value="Estadounidense">Estadounidense</option>
+					<option value="Italiano">Italiano</option>
+					<option value="Colombiano">Colombiano</option>
+					<option value="Chileno">Chileno</option>
+					<option value="Argentino">Argentino</option>
+					<option value="Boliviano">Boliviano</option>
+					<option value="Venezolano">Coreano</option>
+					<option value="Ecuatoriano">Ecuatoriano</option>
+					<option value="Japonés">Japonés</option>
+					<option value="Chino">Chino</option>
+					<option value="Australiano">Australiano</option>
+					<option value="Ruso">Ruso</option>
+					<option value="Español">Español</option>
+					<option value="Salvadoreño">Salvadoreño</option>
+					<option value="Noruego">Noruego</option>
+
+				</select>
+			</div>
+			<br />
 				<label for="estado" class="form-label">Estado</label>
 				<div class="col-sm-12">
 					<input type="checkbox" th:field="*{enabled}" />
-					
+
 				</div>
-				
+
 				<hr style="background-color: #FDFDFD" />
 				<div class="form-group row">
 					<div class="col-sm-6">
