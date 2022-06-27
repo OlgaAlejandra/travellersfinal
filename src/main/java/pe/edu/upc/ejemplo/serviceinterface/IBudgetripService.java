@@ -13,4 +13,6 @@ public interface IBudgetripService {
 	public void delete(int idBudgetrip);
 	Optional<BudgeTrip> listId(int idBudgetrip);
 	public void update(BudgeTrip accommodation);
+	
+	public List<String[]> budgetAmount();
 }

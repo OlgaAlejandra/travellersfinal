@@ -93,4 +93,11 @@ public class BudgetripController {
 		bService.update(budgetrip);
 		return "redirect:/budgetrips/list";
 	}
+	
+	@RequestMapping("/reportbudget")
+	public String budgetAmount(Map<String, Object> model) {
+		model.put("listaBudgetAmount", bService.budgetAmount());
+		return "budgetrip/reporte";
+	}
+
 }

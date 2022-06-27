@@ -43,4 +43,10 @@ public class BudgetripServicelmpl implements IBudgetripService{
 		// TODO Auto-generated method stub
 		budgetripRepository.save(budgetrip);
 	}
+
+	@Override
+	public List<String[]> budgetAmount() {
+		// TODO Auto-generated method stub
+		return budgetripRepository.budgetAmount();
+	}
 }

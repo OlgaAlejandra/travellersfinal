@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="master/master  ::  head"></head>
+<meta charset="UTF-8">
+</head>
+<body>
+<header th:replace="master/master :: header"></header>
+				<div class="container">
+		<br />
+
+					<!-- Page Heading -->
+					<div class="table-responsive">
+						<div style="font-family: 'Roboto', sans-serif; font-size: 150%">Presupuestos</div>
+						<hr class="sidebar-divider">
+
+						<table class="table table-striped">
+							<thead class="thead-dark">
+								<tr align="center">
+									<th scope="col">Presupuestos</th>
+									<th scope="col">Tipo de Viaje</th>
+
+								</tr>
+							</thead>
+							<tbody>
+									<tr align="center" th:each="r: ${listaBudgetAmount}">
+									<td th:text="${r[0]}"></td>
+									<td th:text="${r[1]}"></td>							
+							</tbody>
+						</table>
+
+						<p th:text="${mensaje}"></p>
+					</div>
+
+				</div>
+</body>
+</html>
