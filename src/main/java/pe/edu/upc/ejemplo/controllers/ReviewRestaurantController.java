@@ -19,6 +19,7 @@ import pe.edu.upc.ejemplo.entities.ReviewRestaurant;
 import pe.edu.upc.ejemplo.entities.ReviewTour;
 import pe.edu.upc.ejemplo.serviceinterface.IRestaurantService;
 import pe.edu.upc.ejemplo.serviceinterface.IReviewRestaurantService;
+import pe.edu.upc.ejemplo.serviceinterface.IUserService;
 import pe.edu.upc.ejemplo.serviceinterface.IUsuarioService;
 
 @Controller
@@ -29,13 +30,13 @@ public class ReviewRestaurantController {
 	@Autowired
 	private IRestaurantService rService;
 	@Autowired
-	private IUsuarioService uService;
+	private IUserService userService;
 	
 	@GetMapping("/new")
 	public String newReview(Model model) {
 		model.addAttribute("re", new ReviewTour());
 		model.addAttribute("listaRestaurantes",rService.list());
-		model.addAttribute("listaUsers",uService.list());
+		model.addAttribute("listaUsuarios",userService.listar());
 		return"review/frmRegistroRestaurant";
 	}
 	
@@ -74,7 +75,7 @@ public class ReviewRestaurantController {
 	@RequestMapping("/goupdate/{id}")
 	public String goUpdateReview(@PathVariable int id, Model model) {
 		Optional<ReviewRestaurant> objRev = reService.listId(id);
-		model.addAttribute("listaUsers",uService.list());
+		model.addAttribute("listaUsuarios",userService.listar());
 		model.addAttribute("listaRestaurantes",rService.list());
 		model.addAttribute("revi",objRev.get());
 		return "review/frmActualizarRestaurant";

@@ -11,6 +11,24 @@
 			style="font-family: 'Roboto', sans-serif; font-size: 150%; font-weight: bold;">Lista
 			de Accommodations</div>
 		<br />
+		<form th:action="@{/accommodations/find}" method="post" th:object="${acc}">
+		
+		<div class="form-group">
+
+							<label for=cat>Buscar:</label>
+							<div class="col-sm-12">
+								<input type="text" class="form-control" th:field="*{name}"
+									id="name" placeholder="Ingrese nombre de alojamiento"></input>
+									<br/>
+								<div align="right">
+									<button type="submit" class="btn btn-warning">Buscar</button>
+									<a href="/accommodations/list" class="btn btn-dark">Cancelar</a>
+								</div>
+							</div>
+
+						</div>
+		</form>
+		
 		<a
 						th:href="@{/reviews/new}"><button
 							type="button" class="btn btn-outline-success">

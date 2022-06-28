@@ -40,6 +40,18 @@ public class AccommodationServiceImpl implements IAccommodationService{
 	public void update(Accommodation accommodation) {
 		accommodationRepository.save(accommodation);
 	}
+
+	@Override
+	public List<Accommodation> findByName(String name) {
+		// TODO Auto-generated method stub
+		return accommodationRepository.findByName(name);
+	}
+
+	@Override
+	public List<Accommodation> findByNameLikeIgnoreCase(String name) {
+		// TODO Auto-generated method stub
+		return accommodationRepository.findByNameLikeIgnoreCase(name);
+	}
 	
 	
 }

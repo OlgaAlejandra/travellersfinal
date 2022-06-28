@@ -12,4 +12,7 @@ public interface IAccommodationService {
 	public void delete(int idAccommodation);
 	Optional<Accommodation> listId(int idAccommodation);
 	public void update(Accommodation accommodation);
+	List<Accommodation> findByName(String name);
+
+	List<Accommodation> findByNameLikeIgnoreCase(String name);
 }

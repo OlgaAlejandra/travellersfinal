@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import pe.edu.upc.ejemplo.entities.ReviewTour;
 import pe.edu.upc.ejemplo.serviceinterface.IReviewTourService;
 import pe.edu.upc.ejemplo.serviceinterface.ITourService;
-import pe.edu.upc.ejemplo.serviceinterface.IUsuarioService;
+import pe.edu.upc.ejemplo.serviceinterface.IUserService;
 
 @Controller
 @RequestMapping("/reviewtours")
@@ -28,13 +28,13 @@ public class ReviewTourController {
 	@Autowired
 	private ITourService tService;
 	@Autowired
-	private IUsuarioService uService;
+	private IUserService userService;
 	
 	@GetMapping("/new")
 	public String newReview(Model model) {
 		model.addAttribute("re", new ReviewTour());
 		model.addAttribute("listaTours",tService.list());
-		model.addAttribute("listaUsers",uService.list());
+		model.addAttribute("listaUsuarios",userService.listar());
 		return"review/frmRegistroTour";
 	}
 	
@@ -73,7 +73,7 @@ public class ReviewTourController {
 	@RequestMapping("/goupdate/{id}")
 	public String goUpdateReview(@PathVariable int id, Model model) {
 		Optional<ReviewTour> objRev = reService.listId(id);
-		model.addAttribute("listaUsers",uService.list());
+		model.addAttribute("listaUsuarios",userService.listar());
 		model.addAttribute("listaTours",tService.list());
 		model.addAttribute("revi",objRev.get());
 		return "review/frmActualizarTour";

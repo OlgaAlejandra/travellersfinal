@@ -1,6 +1,8 @@
 package pe.edu.upc.ejemplo.controllers;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -14,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -87,36 +90,38 @@ public class AccommodationController {
 
 		return "redirect:/accommodations/list";
 	}
-	
+
 	@GetMapping("/list")
 	public String listAccommodation(Model model) {
 		try {
+			model.addAttribute("acc", new Accommodation());
+
 			model.addAttribute("listaAlojamientos", aService.list());
 		} catch (Exception e) {
 			model.addAttribute("error", e.getMessage());
 		}
 		return "accommodation/frmLista";
 	}
-	
+
 	@RequestMapping("/delete")
 	public String deleteAccommodation(Map<String, Object> model, @RequestParam(value = "id") Integer id) {
 		try {
-			if(id!= null && id>0) {
+			if (id != null && id > 0) {
 				aService.delete(id);
 				model.put("listaAlojamientos", aService.list());
 			}
 		} catch (Exception e) {
-			model.put("error",e.getMessage());
+			model.put("error", e.getMessage());
 		}
 		return "accommodation/frmLista";
 	}
-	
+
 	@RequestMapping("/goupdate/{id}")
 	public String goUpdateAccommodation(@PathVariable int id, Model model) {
 		Optional<Accommodation> objAcm = aService.listId(id);
-		
-		model.addAttribute("listaAccommodationTypes",atService.list());
-		model.addAttribute("listaDestinations",dService.list());
+
+		model.addAttribute("listaAccommodationTypes", atService.list());
+		model.addAttribute("listaDestinations", dService.list());
 		model.addAttribute("acm", objAcm.get());
 		return "accommodation/frmActualizar";
 	}
@@ -145,16 +150,34 @@ public class AccommodationController {
 
 		return "redirect:/accommodations/list";
 	}
-	
+
 	@GetMapping(value = "/ver/{id}")
 	public String ver(@PathVariable(value = "id") int id, Map<String, Object> model, RedirectAttributes flash) {
 		Optional<Accommodation> accommodation = aService.listId(id);
-		if(accommodation==null) {
+		if (accommodation == null) {
 			flash.addFlashAttribute("error", "El Alojamiento no existe en la base de datos");
 			return "redirect:/accommodations/list";
-			
+
 		}
 		model.put("alojamiento", accommodation.get());
-		return "accommodation/ver";	}
+		return "accommodation/ver";
+	}
+
+	@RequestMapping("/find")
+	public String findByAccommodation(Map<String,Object> model, @ModelAttribute Accommodation accommodation)throws ParseException{
+		
+		List<Accommodation> listaAlojamientos;
+		accommodation.setName(accommodation.getName());
+		listaAlojamientos = aService.findByName(accommodation.getName());
+		if(listaAlojamientos.isEmpty()) {
+			listaAlojamientos = aService.findByNameLikeIgnoreCase(accommodation.getName());
+		}
+		if(listaAlojamientos.isEmpty()) {
+			model.put("mensaje", "No se encontró");
+		}
+		model.put("listaAlojamientosB", listaAlojamientos);
+		return "accommodation/frmLista";
+
+	}
 
 }

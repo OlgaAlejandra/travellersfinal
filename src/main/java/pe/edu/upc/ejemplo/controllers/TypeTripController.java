@@ -37,7 +37,7 @@ public class TypeTripController {
 			return "typetrip/frmRegistro";
 		}else {
 			tpService.insert(typ);
-			return "redirect:/typetrips/new";
+			return "redirect:/typetrips/list";
 		}
 	}
 	

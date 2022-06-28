@@ -9,7 +9,8 @@
 	<div style="font-family: 'Roboto', sans-serif; font-size: 150%">Registro
 		de Reviews - Restaurants</div>
 	<br />
-	<form th:action="@{/reviewrestaurants/save}" th:object="${re}" method="post">
+	<form th:action="@{/reviewrestaurants/save}" th:object="${re}"
+		method="post">
 
 		<div class="col-sm-12">
 			<label class="form-label" for="idReview">Id: </label> <input
@@ -32,14 +33,12 @@
 
 			</select>
 		</div>
-		<br /> 
+		<br />
 		<div class="col-sm-12">
 			<label class="form-label" for="usuario">Usuario: </label> <select
-				name="selectUsuario" class="form-control"
-				th:field="*{usuario.idUsuario}">
-				<option th:each="r:${listaUsers}" th:value="${r.idUsuario}"
-					th:text="${r.fullName}"
-					th:selected="(${r.idUsuario}==*{usuario.idUsuario})"></option>
+				name="selectUsuario" class="form-control" th:field="*{usuario.id}">
+				<option th:each="r:${listaUsuarios}" th:value="${r.id}"
+					th:text="${r.fullName}" th:selected="(${r.id}==*{usuario.id})"></option>
 			</select>
 		</div>
 		<br />
@@ -47,13 +46,13 @@
 			<label class="form-label" for="restaurant">Restaurant: </label> <select
 				name="selectRestaurant" class="form-control"
 				th:field="*{restaurant.idRestaurant}">
-				<option th:each="r:${listaRestaurantes}" th:value="${r.idRestaurant}"
-					th:text="${r.name}"
+				<option th:each="r:${listaRestaurantes}"
+					th:value="${r.idRestaurant}" th:text="${r.name}"
 					th:selected="(${r.idRestaurant}==*{restaurant.idRestaurant})"></option>
 			</select>
 		</div>
 		<br />
-		
+
 		<div class="col-sm-12">
 			<input class="btn btn-dark" type="submit"></input>
 		</div>

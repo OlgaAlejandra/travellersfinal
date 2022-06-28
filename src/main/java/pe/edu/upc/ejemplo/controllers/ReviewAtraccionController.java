@@ -19,7 +19,7 @@ import pe.edu.upc.ejemplo.entities.ReviewAtraccion;
 import pe.edu.upc.ejemplo.entities.ReviewTour;
 import pe.edu.upc.ejemplo.serviceinterface.IAtraccionService;
 import pe.edu.upc.ejemplo.serviceinterface.IReviewAtraccionService;
-import pe.edu.upc.ejemplo.serviceinterface.IUsuarioService;
+import pe.edu.upc.ejemplo.serviceinterface.IUserService;
 
 @Controller
 @RequestMapping("/reviewatraccions")
@@ -29,13 +29,13 @@ public class ReviewAtraccionController {
 	@Autowired
 	private IAtraccionService acService;
 	@Autowired
-	private IUsuarioService uService;
+	private IUserService userService;
 	
 	@GetMapping("/new")
 	public String newReview(Model model) {
 		model.addAttribute("re", new ReviewTour());
 		model.addAttribute("listaAtraciones",acService.list());
-		model.addAttribute("listaUsers",uService.list());
+		model.addAttribute("listaUsuarios",userService.listar());
 		return"review/frmRegistroAtracion";
 	}
 	
@@ -74,7 +74,7 @@ public class ReviewAtraccionController {
 	@RequestMapping("/goupdate/{id}")
 	public String goUpdateReview(@PathVariable int id, Model model) {
 		Optional<ReviewAtraccion> objRev = reService.listId(id);
-		model.addAttribute("listaUsers",uService.list());
+		model.addAttribute("listaUsuarios",userService.listar());
 		model.addAttribute("listaAtraciones",acService.list());
 		model.addAttribute("revi",objRev.get());
 		return "review/frmActualizarAtraccion";

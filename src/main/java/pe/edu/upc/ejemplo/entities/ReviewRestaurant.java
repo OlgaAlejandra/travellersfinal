@@ -25,7 +25,7 @@ public class ReviewRestaurant {
 	
 	@ManyToOne
 	@JoinColumn(name = "idUsuario")
-	private Usuario usuario;
+	private Users usuario;
 	
 	@ManyToOne
 	@JoinColumn(name = "idAttraccion")
@@ -48,7 +48,7 @@ public class ReviewRestaurant {
 		// TODO Auto-generated constructor stub
 	}
 
-	public ReviewRestaurant(int idReview, String description, String numRating, Usuario usuario, Atraccion atraccion,
+	public ReviewRestaurant(int idReview, String description, String numRating, Users usuario, Atraccion atraccion,
 			Restaurant restaurant, Tour tour, Accommodation accommodation) {
 		super();
 		this.idReview = idReview;
@@ -85,11 +85,11 @@ public class ReviewRestaurant {
 		this.numRating = numRating;
 	}
 
-	public Usuario getUsuario() {
+	public Users getUsuario() {
 		return usuario;
 	}
 
-	public void setUsuario(Usuario usuario) {
+	public void setUsuario(Users usuario) {
 		this.usuario = usuario;
 	}
 

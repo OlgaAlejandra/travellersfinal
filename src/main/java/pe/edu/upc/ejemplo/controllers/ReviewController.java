@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import pe.edu.upc.ejemplo.entities.Review;
 import pe.edu.upc.ejemplo.serviceinterface.IAccommodationService;
 import pe.edu.upc.ejemplo.serviceinterface.IReviewService;
-import pe.edu.upc.ejemplo.serviceinterface.IUsuarioService;
+import pe.edu.upc.ejemplo.serviceinterface.IUserService;
 
 @Controller
 @RequestMapping("/reviews")
@@ -29,13 +29,13 @@ public class ReviewController {
 	@Autowired
 	private IAccommodationService aService;
 	@Autowired
-	private IUsuarioService uService;
+	private IUserService userService;
 	
 	@GetMapping("/new")
 	public String newReview(Model model) {
 		model.addAttribute("re", new Review());
 		model.addAttribute("listaAlojamientos",aService.list());
-		model.addAttribute("listaUsers",uService.list());
+		model.addAttribute("listaUsuarios",userService.listar());
 		return"review/frmRegistro";
 	}
 	
@@ -76,7 +76,7 @@ public class ReviewController {
 	public String goUpdateReview(@PathVariable int id, Model model) {
 		Optional<Review> objRev = reService.listId(id);
 		model.addAttribute("listaAlojamientos",aService.list());
-		model.addAttribute("listaUsers",uService.list());
+		model.addAttribute("listaUsuarios",userService.listar());
 		model.addAttribute("revi",objRev.get());
 		return "review/frmActualizar";
 	}
