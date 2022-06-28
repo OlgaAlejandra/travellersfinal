@@ -15,4 +15,6 @@ public interface IBudgetripService {
 	public void update(BudgeTrip accommodation);
 	
 	public List<String[]> budgetAmount();
+	public List<String[]> budgetAmountDesc();
 }
+

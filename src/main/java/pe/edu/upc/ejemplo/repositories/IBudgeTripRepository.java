@@ -14,4 +14,8 @@ public interface IBudgeTripRepository extends JpaRepository<BudgeTrip, Integer> 
 	@Query(value = "Select b.num_budget, t.name from budgetrip b join typetrip t on t.id_type_trip = b.id_type_trip order by num_budget ASC",nativeQuery = true)
 	public List<String[]> budgetAmount();
 	
+	@Query(value = "Select b.num_budget, t.name from budgetrip b join typetrip t on t.id_type_trip = b.id_type_trip order by num_budget Desc", nativeQuery = true)
+	public List<String[]> budgetAmountDesc();
+
+	
 }

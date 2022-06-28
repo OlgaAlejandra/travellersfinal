@@ -7,11 +7,7 @@
 	<header th:replace="master/master :: header"></header>
 	<div class="container">
 		<br />
-<<<<<<< HEAD
-		<div>actualziar Type Trip</div>
-=======
 		<div>Actualizar Type Trip</div>
->>>>>>> 059108069b36d1fe944fe57d5128775ec91bc44e
 		<br />
 		<form th:action="@{/typetrips/update}" th:object="${type}" method="post">
 
@@ -22,9 +18,11 @@
 			<br />
 			<div class="col-sm-12">
 				<label class="form-label" for="name">Nombre: </label> <input
-					class="form-control" type="text" th:field="*{name}"></input>
+					class="form-control" type="text" th:field="*{name}"
+					th:errorclass="'form-control alert-danger'" required pattern="[A-Za-z]+" title="Completar el tipo de viaje"></input> <small
+					class="form-text text-danger" th:if="${#fields.hasErrors('name')}"
+					th:errors="*{name}"></small>
 			</div>
-	
 			<br />
 			<div class="col-sm-12">
 				<input class="btn btn-dark" type="submit" value="Actualizar"></input>

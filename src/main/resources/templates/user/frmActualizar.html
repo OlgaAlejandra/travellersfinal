@@ -14,31 +14,66 @@
 			<form th:action="@{/users/update}" th:object="${use}" method="post">
 				<div class="col-sm-12">
 					<label for="username" class="col-sm-2 col-form-label">Username:
-					</label> <input type="text" th:field="*{username}" class="form-control" />
+					</label> <input type="text" th:field="*{username}" class="form-control" th:errorclass="'form-control alert-danger'"  required  pattern="[a-zA-Z'-'\s]*" title="Completar el nombre de usuario" />
 				</div>
 
 				<label for="password" class="col-sm-2 col-form-label">Password</label>
 				<div class="col-sm-12">
-					<input type="password" th:field="*{password}" class="form-control">
+					<input type="password" th:field="*{password}" class="form-control" required>
 
 				</div>
 
 				<label for="fullName" class="col-sm-2 col-form-label">Nombre</label>
 				<div class="col-sm-12">
-					<input type="text" th:field="*{fullName}" class="form-control">
+					<input type="text" th:field="*{fullName}" class="form-control" th:errorclass="'form-control alert-danger'"  required  pattern="[a-zA-Z'-'\s]*" title="Completar el nombre">
 
 				</div>
+				<br />
+				<div class="col-sm-12">
+					<label class="form-label" for="email">Email: </label> <input
+						class="form-control" type="text" th:field="*{email}" th:errorclass="'form-control alert-danger'"  required  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Completar el email"></input>
+				</div>
+				<br />
+			<div class="col-sm-12">
+				<label class="form-label" for="numPhone">Numero Telefono: </label> <input
+					class="form-control" type="text" th:field="*{numPhone}" th:errorclass="'form-control alert-danger'"  required pattern="[0-9]{9}" title="Completar el teléfono"></input>
+			</div>
+			<br />
+			<div class="col-sm-12">
+				<label class="form-label" for="nationality">Nacionalidad: </label> <select
+					name="select" class="form-control" th:field="*{nationality}">
+					<option value="Peruano" selected="selected">Peruano</option>
+					<option value="Mexicano">Mexicano</option>
+					<option value="Francés">Francés</option>
+					<option value="Estadounidense">Estadounidense</option>
+					<option value="Italiano">Italiano</option>
+					<option value="Colombiano">Colombiano</option>
+					<option value="Chileno">Chileno</option>
+					<option value="Argentino">Argentino</option>
+					<option value="Boliviano">Boliviano</option>
+					<option value="Venezolano">Coreano</option>
+					<option value="Ecuatoriano">Ecuatoriano</option>
+					<option value="Japonés">Japonés</option>
+					<option value="Chino">Chino</option>
+					<option value="Australiano">Australiano</option>
+					<option value="Ruso">Ruso</option>
+					<option value="Español">Español</option>
+					<option value="Salvadoreño">Salvadoreño</option>
+					<option value="Noruego">Noruego</option>
 
+				</select>
+			</div>
+			<br />
 				<label for="estado" class="form-label">Estado</label>
 				<div class="col-sm-12">
-					<input type="checkbox" th:field="*{enabled}" />
+					<input type="checkbox" th:field="*{enabled}" required/>
 
 				</div>
 
 				<hr style="background-color: #FDFDFD" />
 				<div class="form-group row">
 					<div class="col-sm-6">
-						<input type="submit" value="Actualizar" class="btn btn-dark" /> <a
+						<input type="submit" value="Registrar" class="btn btn-dark" /> <a
 							href="/usuarios/home" class="btn btn-danger"><span>Cancelar</span></a>
 					</div>
 				</div>

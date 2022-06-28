@@ -99,5 +99,10 @@ public class BudgetripController {
 		model.put("listaBudgetAmount", bService.budgetAmount());
 		return "budgetrip/reporte";
 	}
+	@RequestMapping("/reportbudgetdes")
+	public String budgetAmountDesc(Map<String, Object> model) {
+		model.put("listaBudgetAmountDes", bService.budgetAmountDesc());
+		return "budgetrip/reporteDes";
 
+	}
 }

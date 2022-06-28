@@ -10,7 +10,7 @@
 
 					<!-- Page Heading -->
 					<div class="table-responsive">
-						<div style="font-family: 'Roboto', sans-serif; font-size: 150%">Presupuestos (Orden Asc)</div>
+						<div style="font-family: 'Roboto', sans-serif; font-size: 150%">Presupuestos (Orden Desc)</div>
 						<hr class="sidebar-divider"> 
 							<a th:href="@{/budgetrips/reportbudget}" type="button"
 						class="btn btn-warning k"> <span
@@ -29,7 +29,7 @@
 								</tr>
 							</thead>
 							<tbody>
-									<tr align="center" th:each="r: ${listaBudgetAmount}">
+									<tr align="center" th:each="r: ${listaBudgetAmountDes}">
 									<td th:text="${r[0]}"></td>
 									<td th:text="${r[1]}"></td>							
 							</tbody>

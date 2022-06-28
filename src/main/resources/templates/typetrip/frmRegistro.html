@@ -18,9 +18,12 @@
 			<br />
 			<div class="col-sm-12">
 				<label class="form-label" for="name">Nombre: </label> <input
-					class="form-control" type="text" th:field="*{name}"></input>
+					class="form-control" type="text" th:field="*{name}"
+					th:errorclass="'form-control alert-danger'" required pattern="[A-Za-z]+" title="Completar el tipo de viaje"></input> <small
+					class="form-text text-danger" th:if="${#fields.hasErrors('name')}"
+					th:errors="*{name}"></small>
 			</div>
-	
+
 			<br />
 			<div class="col-sm-12">
 				<input class="btn btn-dark" type="submit"></input>

@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name = "typetrip")
@@ -15,6 +16,7 @@ public class TypeTrip {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int idTypeTrip;
 	
+	@NotEmpty(message = "Debe ingresar nombre")
 	@Column(name = "name", nullable = false, length = 100)
 	private String name;
 
