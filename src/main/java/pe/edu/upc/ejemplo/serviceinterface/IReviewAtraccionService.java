@@ -11,4 +11,6 @@ public interface IReviewAtraccionService {
 	public void delete(int idReview);
 	Optional<ReviewAtraccion> listId(int idReview);
 	public void update(ReviewAtraccion review);
+	
+	public List<String[]> ReviewAtraccionmayor();
 }

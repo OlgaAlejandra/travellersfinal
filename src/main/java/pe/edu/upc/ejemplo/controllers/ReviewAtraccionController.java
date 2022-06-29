@@ -84,4 +84,11 @@ public class ReviewAtraccionController {
 		reService.update(review);
 		return"redirect:/reviewatraccions/list";
 	}
+	
+	
+	@RequestMapping("/reportReviewAtra")
+	public String ReviewAtraccionmayor(Map<String, Object> model) {
+		model.put("listaReviewAtraccionmayor", reService.ReviewAtraccionmayor());
+		return "reviewatraccions/reporte";
+	}
 }

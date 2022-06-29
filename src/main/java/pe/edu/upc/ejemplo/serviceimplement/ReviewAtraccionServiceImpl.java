@@ -45,5 +45,9 @@ public class ReviewAtraccionServiceImpl implements IReviewAtraccionService{
 		// TODO Auto-generated method stub
 		reviewAtraccionRepository.save(review);
 	}
-
+	@Override
+	public List<String[]> ReviewAtraccionmayor() {
+		// TODO Auto-generated method stub
+		return reviewAtraccionRepository.ReviewAtraccionmayor();
+	}
 }
