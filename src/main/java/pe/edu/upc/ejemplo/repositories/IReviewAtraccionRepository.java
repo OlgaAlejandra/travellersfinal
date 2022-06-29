@@ -10,8 +10,6 @@ import pe.edu.upc.ejemplo.entities.ReviewAtraccion;
 
 @Repository
 public interface IReviewAtraccionRepository extends JpaRepository<ReviewAtraccion, Integer>{
-	@Query(value = "SELECT * FROM review_atraccion\r\n"
-			+ "WHERE num_rating = (SELECT MAX(num_rating) FROM review_atraccion)\r\n"
-			+ "ORDER BY  id_review ASC",nativeQuery = true)
+	@Query(value = "SELECT * FROM review_atraccion WHERE num_rating = (SELECT MAX(num_rating) FROM review_atraccion) ORDER BY  id_review ASC",nativeQuery = true)
 	public List<String[]> ReviewAtraccionmayor();
 }

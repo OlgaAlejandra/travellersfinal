@@ -4,37 +4,40 @@
 <meta charset="UTF-8">
 </head>
 <body>
-<header th:replace="master/master :: header"></header>
-				<div class="container">
+	<header th:replace="master/master :: header"></header>
+	<div class="container">
 		<br />
 
-					<!-- Page Heading -->
-					<div class="table-responsive">
-						<div style="font-family: 'Roboto', sans-serif; font-size: 150%">Rating(Orden Asc)</div>
-						<hr class="sidebar-divider"> 
-							<a th:href="@{/budgetrips/reportbudget}" type="button"
-						class="btn btn-warning k"> <span
-						class="glyphicon glyphicon-circle-arrow-left"></span> Ordenar ASC
-					</a>
-						
-						<table class="table table-striped">
-							<thead class="thead-dark">
-								<tr align="center">
-									<th scope="col">Presupuestos</th>
-									<th scope="col">Tipo de Viaje</th>
+		<!-- Page Heading -->
+		<div class="table-responsive">
+			<div style="font-family: 'Roboto', sans-serif; font-size: 150%">Review
+				con Mayor Rating</div>
+			<hr class="sidebar-divider">
 
-								</tr>
-							</thead>
-							<tbody>
-									<tr align="center" th:each="r: ${listaBudgetAmount}">
-									<td th:text="${r[0]}"></td>
-									<td th:text="${r[1]}"></td>							
-							</tbody>
-						</table>
 
-						<p th:text="${mensaje}"></p>
-					</div>
+			<table class="table table-striped">
+				<thead class="thead-dark">
+					<tr align="center">
+						<th scope="col">Id</th>
+						<th scope="col">Review</th>
+						<th scope="col">Rating</th>
+						<th scope="col">Atracción</th>
 
-				</div>
+
+					</tr>
+				</thead>
+				<tbody>
+					<tr align="center" th:each="r: ${listaReviewAtraccionmayor}">
+						<td th:text="${r[0]}"></td>
+						<td th:text="${r[1]}"></td>
+						<td th:text="${r[2]}"></td>
+						<td th:text="${r[4]}"></td>
+				</tbody>
+			</table>
+
+			<p th:text="${mensaje}"></p>
+		</div>
+
+	</div>
 </body>
 </html>

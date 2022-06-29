@@ -89,6 +89,6 @@ public class ReviewAtraccionController {
 	@RequestMapping("/reportReviewAtra")
 	public String ReviewAtraccionmayor(Map<String, Object> model) {
 		model.put("listaReviewAtraccionmayor", reService.ReviewAtraccionmayor());
-		return "reviewatraccions/reporte";
+		return "atraccion/reporte";
 	}
 }

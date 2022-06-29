@@ -7,7 +7,7 @@
 	<header th:replace="master/master :: header"></header>
 	<div class="container">
 		<br />
-		<div>Geolocalización</div>
+		<div style="font-family: 'Roboto', sans-serif; font-size: 150%">Geolocalización</div>
 		<br />
 		<form th:action="@{/geolocalizations/save}" th:object="${g}"
 			method="post" enctype="multipart/form-data">
