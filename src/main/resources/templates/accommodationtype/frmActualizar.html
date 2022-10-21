@@ -7,13 +7,8 @@
 	<header th:replace="master/master :: header"></header>
 <div class="container">
 		<br />
-		<div style="font-family: 'Roboto', sans-serif; font-size: 150%">Actualizar Accommodation Types</div>
+		<div style="font-family: 'Roboto', sans-serif; font-size: 150%">Actualizar Tipo de Habitación</div>
 		<form th:action="@{/accommodationtypes/update}" th:object="${atype}" method="post">
-
-			<div class="col-sm-12">
-				<label class="form-label" for="idAccommodationType">Id: </label> <input
-					class="form-control" type="text" th:field="*{idAccommodationType}"></input>
-			</div>
 			<br />
 			<div class="col-sm-12">
 				<label class="form-label" for="description">Descripción: </label> <input

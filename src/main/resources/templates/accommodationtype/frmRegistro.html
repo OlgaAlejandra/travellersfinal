@@ -8,14 +8,9 @@
 	<div class="container">
 		<br />
 		<div style="font-family: 'Roboto', sans-serif; font-size: 150%">Registrar
-			Accommodation Types</div>
+			Tipo de Habitación</div>
 		<form th:action="@{/accommodationtypes/save}" th:object="${at}"
 			method="post">
-
-			<div class="col-sm-12">
-				<label class="form-label" for="idAccommodationType">Id: </label> <input
-					class="form-control" type="text" th:field="*{idAccommodationType}"></input>
-			</div>
 			<br />
 			<div class="col-sm-12">
 				<label class="form-label" for="description">Descripción: </label> <input

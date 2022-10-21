@@ -11,7 +11,7 @@ import pe.edu.upc.ejemplo.entities.BudgeTrip;
 @Repository
 public interface IBudgeTripRepository extends JpaRepository<BudgeTrip, Integer> {
 
-	@Query(value = "Select b.num_budget, t.name from budgetrip b join typetrip t on t.id_type_trip = b.id_type_trip order by num_budget ASC",nativeQuery = true)
+	@Query(value = "Select b.num_budget, t.name from budgetrip b join typetrip t on t.id_type_trip = b.id_type_trip order by num_budget Desc limit 1",nativeQuery = true)
 	public List<String[]> budgetAmount();
 	
 	@Query(value = "Select b.num_budget, t.name from budgetrip b join typetrip t on t.id_type_trip = b.id_type_trip order by num_budget Desc", nativeQuery = true)

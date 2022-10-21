@@ -11,11 +11,6 @@
 	<form th:action="@{/reviewrestaurants/update}" th:object="${revi}" method="post">
 
 		<div class="col-sm-12">
-			<label class="form-label" for="idReview">Id: </label> <input
-				class="form-control" type="text" th:field="*{idReview}"></input>
-		</div>
-		<br />
-		<div class="col-sm-12">
 			<label class="form-label" for="description">Descripción: </label> <input
 				class="form-control" type="text" th:field="*{description}" th:errorclass="'form-control alert-danger'"  required  pattern="[a-zA-Z'-'\s]*" title="Completar la descripción"></input>
 		</div>

@@ -10,11 +10,6 @@
 		<div style="font-family: 'Roboto', sans-serif; font-size: 150%">Registro Type Trip</div>
 		<br />
 		<form th:action="@{/typetrips/save}" th:object="${tp}" method="post">
-
-			<div class="col-sm-12">
-				<label class="form-label" for="idTypeTrip">Id: </label> <input
-					class="form-control" type="text" th:field="*{idTypeTrip}"></input>
-			</div>
 			<br />
 			<div class="col-sm-12">
 				<label class="form-label" for="name">Nombre: </label> <input
