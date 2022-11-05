@@ -10,11 +10,6 @@
 		Reviews - Alojamientos</div>
 	<br />
 	<form th:action="@{/reviews/update}" th:object="${revi}" method="post">
-
-		<div class="col-sm-12">
-			<label class="form-label" for="idReview">Id: </label> <input
-				class="form-control" type="text" th:field="*{idReview}"></input>
-		</div>
 		<br />
 		<div class="col-sm-12">
 			<label class="form-label" for="description">Descripción: </label> <input

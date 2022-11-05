@@ -10,10 +10,6 @@
 	<br />
 	<form th:action="@{/destinations/save}" th:object="${d}" method="post" enctype="multipart/form-data">
 
-		<div class="col-sm-12">
-			<label class="form-label" for="idDestination">Id: </label> <input
-				class="form-control" type="text" th:field="*{idDestination}"></input>
-		</div>
 		<br />
 		<div class="col-sm-12">
 			<label class="form-label" for="name">Nombre: </label> <input
@@ -34,6 +30,7 @@
 				<option value="España">España</option>
 				<option value="Francia">Francia</option>
 				<option value="Portugal">Portugal</option>
+			<option value="Argentina">Francia</option>
 				<option value="Argentina">Argentina</option>
 				<option value="Bolivia">Bolivia</option>
 				<option value="Italia">Italia</option>

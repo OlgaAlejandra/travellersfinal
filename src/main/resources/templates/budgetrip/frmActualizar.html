@@ -10,12 +10,6 @@
 		<div style="font-family: 'Roboto', sans-serif; font-size: 150%">Actualizar BudgetTrip</div>
 		<br />
 		<form th:action="@{/budgetrips/update}" th:object="${btt}" method="post">
-
-			<div class="col-sm-12">
-				<label class="form-label" for="idBudgeTrip">Id: </label> <input
-					class="form-control" type="text" th:field="*{idBudgeTrip}"></input>
-			</div>
-			<br />
 			<div class="col-sm-12">
 				<label class="form-label" for="numBudget">numBudget: </label> <input
 					class="form-control" type="text" th:field="*{numBudget}"  th:errorclass="'form-control alert-danger'"  required pattern="[0-9]{2,6}" title="Ingresar presupuesto"></input>

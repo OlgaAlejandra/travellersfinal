@@ -11,10 +11,6 @@
 		<br />
 		<form th:action="@{/geolocalizations/save}" th:object="${g}"
 			method="post" enctype="multipart/form-data">
-			<div class="col-sm-12">
-				<label class="form-label" for="idGeolocalization">Id: </label> <input
-					class="form-control" type="text" th:field="*{idGeolocalization}"></input>
-			</div>
 			<br />
 			<div class="col-sm-12">
 				<label class="form-label" for="image">Imagen: </label> <input

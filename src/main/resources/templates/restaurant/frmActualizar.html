@@ -12,11 +12,6 @@
 		<form th:action="@{/restaurants/update}" th:object="${rest}"
 			method="post" enctype="multipart/form-data">
 			<div class="col-sm-12">
-				<label class="form-label" for="idRestaurant">Id: </label> <input
-					class="form-control" type="text" th:field="*{idRestaurant}"></input>
-			</div>
-			<br />
-			<div class="col-sm-12">
 				<label class="form-label" for="name">Nombre: </label> <input
 					class="form-control" type="text" th:field="*{name}"
 					th:errorclass="'form-control alert-danger'" required
