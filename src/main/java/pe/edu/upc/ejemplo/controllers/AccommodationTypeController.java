@@ -37,7 +37,7 @@ public class AccommodationTypeController {
 			return"accommodationtype/frmRegistro";
 		}else {
 			atService.insert(acc);
-			return"redirect:/accommodationtypes/new";
+			return"redirect:/accommodationtypes/list";
 		}
 	}
 	

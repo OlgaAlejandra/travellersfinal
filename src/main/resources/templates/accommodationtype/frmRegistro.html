@@ -20,8 +20,9 @@
 			<br />
 			<div class="col-sm-12">
 				<label class="form-label" for="numBeds">N° Camas: </label> <select
-					name="select" class="form-control" th:field="*{numBeds}">
-					<option value="1" selected="selected">1</option>
+					name="select" class="form-control" th:field="*{numBeds}" required>
+					<option value="" selected="selected"></option>
+					<option value="1" >1</option>
 					<option value="2">2</option>
 					<option value="3">3</option>
 					<option value="4">4</option>
@@ -35,8 +36,9 @@
 			<br />
 			<div class="col-sm-12">
 				<label class="form-label" for="numSleeps">N° Personas: </label> <select
-					name="select" class="form-control" th:field="*{numSleeps}">
-					<option value="1" selected="selected">1</option>
+					name="select" class="form-control" th:field="*{numSleeps}" required>
+					<option value="" selected="selected"></option>
+					<option value="1" >1</option>
 					<option value="2">2</option>
 					<option value="3">3</option>
 					<option value="4">4</option>

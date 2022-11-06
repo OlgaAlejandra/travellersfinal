@@ -1,5 +1,4 @@
 package pe.edu.upc.ejemplo.entities;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
