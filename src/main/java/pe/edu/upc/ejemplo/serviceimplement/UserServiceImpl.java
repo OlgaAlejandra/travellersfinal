@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import pe.edu.upc.ejemplo.entities.Users;
@@ -14,12 +15,16 @@ import pe.edu.upc.ejemplo.serviceinterface.IUserService;
 public class UserServiceImpl implements IUserService{
 
 	@Autowired
+	private BCryptPasswordEncoder passwordEncoder;
+	
+	@Autowired
 	private UserRepository tR;
 	
 	@Override
-	public void insertar(Users u) {
+	public Users insertar(Users u) {
 		// TODO Auto-generated method stub
-		tR.save(u);
+		u.setPassword(passwordEncoder.encode(u.getPassword()));
+		return tR.save(u);
 	}
 
 	@Override
@@ -46,5 +51,12 @@ public class UserServiceImpl implements IUserService{
 		tR.save(u);
 	}
 
+	@Override
+	public Users findByUsername(String username) {
+		// TODO Auto-generated method stub
+		return tR.findByUsername(username);
+	}
+
+	
 	
 }

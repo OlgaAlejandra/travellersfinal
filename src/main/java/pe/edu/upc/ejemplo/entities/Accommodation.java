@@ -28,7 +28,7 @@ public class Accommodation {
 	@Column(name = "description", length = 250, nullable = false)
 	public String description;
 	
-	@Column(name = "location", length = 200, nullable = false)
+	@Column(name = "location", length = 60, nullable = false)
 	public String location;
 	
 	@Column(name = "facilities", length = 250, nullable = false)

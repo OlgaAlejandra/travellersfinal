@@ -13,18 +13,18 @@
 			method="post" enctype="multipart/form-data">
 			<div class="col-sm-12">
 				<label class="form-label" for="name">Nombre: </label> <input
-					class="form-control" type="text" th:field="*{name}" th:errorclass="'form-control alert-danger'"  required  pattern="[a-zA-Z'-'\s]*" title="Completar el nombre"></input>
+					class="form-control" type="text" th:field="*{name}" th:errorclass="'form-control alert-danger'"  required  pattern="[a-zA-Z'-'\s]*" title="Nombre inválido, vuelva a ingresar"></input>
 					
 			</div>
 			<br />
 			<div class="col-sm-12">
 				<label class="form-label" for="description">Descripción: </label> <input
-					class="form-control" type="text" th:field="*{description}" th:errorclass="'form-control alert-danger'"  required  pattern="[a-zA-Z'-'\s]*" title="Completar la descripción" ></input>
+					class="form-control" type="text" th:field="*{description}" th:errorclass="'form-control alert-danger'"  required  pattern="[a-zA-Z'-'\s]*" title="Descripción inválida inválido, vuelva a ingresar" ></input>
 			</div>
 			<br />
 			<div class="col-sm-12">
 				<label class="form-label" for="location">Dirección: </label> <input
-					class="form-control" type="text" th:field="*{location}" th:errorclass="'form-control alert-danger'"  required  pattern="[a-zA-Z'-'\s][0-9]{1,3}*" title="Completar la dirección" ></input>
+					class="form-control" type="text" th:field="*{location}" th:errorclass="'form-control alert-danger'"  required  pattern="[A-Za-z-ZñÑáéíóúÁÉÍÓÚ'-'\s0-9]{5,60}" title="Dirección inválida, vuelva a ingresar" ></input>
 			</div>
 			<br />
 			<div class="col-sm-12">
@@ -37,7 +37,7 @@
 					In</label>
 				<div class="col-sm-6">
 					<input type="date" th:field="*{availabilityIn}"
-						class="form-control" th:errorclass="'form-control alert-danger'" required />
+						class="form-control" th:errorclass="'form-control alert-danger'"  min="2022-01-01" max="2030-12-31" required />
 					<small class="form-text text-danger"
 						th:if="${#fields.hasErrors('availabilityIn')}"
 						th:errors="*{availabilityIn}"></small>
@@ -49,7 +49,7 @@
 					Out</label>
 				<div class="col-sm-6">
 					<input type="date" th:field="*{availabilityOut}"
-						class="form-control" th:errorclass="'form-control alert-danger'" required />
+						class="form-control" th:errorclass="'form-control alert-danger'"  min="2022-01-01" max="2040-12-31" required />
 					<small class="form-text text-danger"
 						th:if="${#fields.hasErrors('availabilityOut')}"
 						th:errors="*{availabilityOut}"></small>
@@ -65,8 +65,9 @@
 			<div class="col-sm-12">
 				<label class="form-label" for="accommodationType">Habitación
 					Popular: </label> <select name="selectHabitacion" class="form-control"
-					th:field="*{accommodationType.idAccommodationType}">
-					<option th:each="ac:${listaAccommodationTypes}"
+					th:field="*{accommodationType.idAccommodationType}" required>
+										<option value="0" selected="selected"></option>
+										<option th:each="ac:${listaAccommodationTypes}"
 						th:value="${ac.idAccommodationType}" th:text="${ac.description}"
 						th:selected="(${ac.idAccommodationType}==*{accommodationType.idAccommodationType})"></option>
 				</select>
@@ -75,7 +76,8 @@
 			<div class="col-sm-12">
 				<label class="form-label" for="destination">Destino: </label>
 				<select name="selectDestino" class="form-control"
-					th:field="*{destination.idDestination}">
+					th:field="*{destination.idDestination}" required>
+					<option value="0" selected="selected"></option>
 					<option th:each="de:${listaDestinations}"
 						th:value="${de.idDestination}" th:text="${de.name}"
 						th:selected="(${de.idDestination}==*{destination.idDestination})"></option>

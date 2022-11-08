@@ -25,7 +25,7 @@ public class Users {
 	private String username;
 
 	@Column(length = 200)
-	private String password = "$2a$10$u9zeMa6jPfItT34BJR7Wcu7O.9163cKtK7MqjL63JFsTCi9WWLlnq";
+	private String password;
 
 	private Boolean enabled;
 
@@ -41,8 +41,6 @@ public class Users {
 	@JoinColumn(name = "user_id")
 	private List<Role> roles;
 
-	
-	
 	public Users() {
 		super();
 		// TODO Auto-generated constructor stub

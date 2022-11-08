@@ -19,8 +19,9 @@
 		<br />
 		<div class="col-sm-12">
 			<label class="form-label" for="country">País: </label> <select
-				name="select" class="form-control" th:field="*{country}">
-				<option value="Perú" selected="selected">Perú</option>
+				name="select" class="form-control" th:field="*{country}" required>
+				<option value="" selected="selected"></option>
+				<option value="Perú" >Perú</option>
 				<option value="Ecuador">Ecuador</option>
 				<option value="Brasil">Brasil</option>
 				<option value="Colombia">Colombia</option>
@@ -53,9 +54,10 @@
 		</div>
 		<br />
 		<div class="col-sm-12">
-			<label class="form-label" for="typeTrip">Type Trip: </label> <select
+			<label class="form-label" for="typeTrip">Tipo de Viaje: </label> <select
 				name="selectPerson" class="form-control"
-				th:field="*{typeTrip.idTypeTrip}">
+				th:field="*{typeTrip.idTypeTrip}" required>
+				<option value="0" selected="selected"></option>>
 				<option th:each="de:${listaTypeTrips}" th:value="${de.idTypeTrip}"
 					th:text="${de.name}"
 					th:selected="(${de.idTypeTrip}==*{typeTrip.idTypeTrip})"></option>
@@ -65,7 +67,7 @@
 		<div class="col-sm-12">
 				<label class="form-label" for="image">Imagen: </label> <input
 					type="file" name="file" class="form-control" id="image"
-					th:text="${d.image}" required></input>
+					th:text="${d.image}" accept=".jpg,.png,.jpeg" required></input>
 			</div>
 			<hr style="color: #fdfdfd"></hr>
 		<div class="col-sm-12">
